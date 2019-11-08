@@ -50,7 +50,8 @@ app.use(session({
     cookie: {
         httpOnly: 1000 * 60 * 60 * 24 * 3,
         sameSite: true,
-        secure: true,
+        secure: false,
+        // TODO: secure to true if https connection are possible.
     }
 }));
 
