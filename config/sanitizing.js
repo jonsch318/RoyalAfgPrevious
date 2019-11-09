@@ -1,10 +1,5 @@
 const validator = require("express-validator");
 const csurf = require("csurf");
-
-const xsrfMiddleware = csurf({
-    cookie: true,
-})
-
 module.exports = {
     // cross site scripting Prevention by sanitizing.
     xssPrevention: function (req, res, next) {

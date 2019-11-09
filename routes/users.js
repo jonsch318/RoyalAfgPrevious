@@ -3,17 +3,22 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const passport = require("passport");
+const xsrfProtect = require("../config/sanitizing").xsrfPrevention;
 const {
     ensureAuth
 } = require("../config/auth");
 
 router.get("/login", (req, res) => {
-    res.render("login");
+    if (req.user) {
+        return res.redirect("myaccount");
+    }
+    res.render("login", {
+        xsrfToken: req.csrfToken()
+    });
 })
 
 //Login Handle
-router.post("/login", (req, res, next) => {
-
+router.post("/login", xsrfProtect, (req, res, next) => {
     passport.authenticate("local", {
         successRedirect: "/account/myAccount",
         failureRedirect: "/account/login",
@@ -23,11 +28,13 @@ router.post("/login", (req, res, next) => {
 
 // Register
 router.get("/register", (req, res) => {
-    res.render("register");
+    res.render("register", {
+        xsrfToken: req.csrfToken()
+    });
 });
 
 //Register Handle
-router.post("/register", (req, res, next) => {
+router.post("/register", xsrfProtect, (req, res, next) => {
     console.log(req.body);
     const {
         name,
@@ -95,7 +102,8 @@ router.post("/logout", (req, res, next) => {
 
 router.get("/myAccount", ensureAuth, (req, res, next) => {
     res.render("myAccount", {
-        user: req.user
+        user: req.user,
+        xsrfToken: req.csrfToken()
     });
 })
 

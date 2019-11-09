@@ -17,7 +17,7 @@ require("./config/passport")(passport);
 
 // Connection String
 // I am using MongoDb Atlas free service for 512MB MongoDb storage. Username: sa Password: RoyalAfg
-const db = require("./config/keys").MonoURI;
+const db = require("./config/keys").MongoURI;
 
 // Connect to Mongo
 mongoose.connect(db, {
@@ -91,7 +91,7 @@ app.use("/account", require("./routes/users"));
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    logger.debug(`Server started on port ${PORT}`);
+    logger.debug("Server started on port %s", PORT);
 });
 
 //#endregion

@@ -26,9 +26,8 @@
                         placeholder="Confirm Password"
                         value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                    Register
-                </button>
+                <input type="hidden" name="_csrf" value="<%= xsrfToken %>" />
+                <input type="submit" class="btn btn-primary btn-block" value="Register" />
             </form>
             <p class="lead mt-4">Have An Account? <a href="/account/login">Login</a></p>
         </div>

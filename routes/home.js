@@ -3,7 +3,6 @@ const router = express.Router();
 const logger = require("../config/logger");
 
 router.get("/", (req, res) => {
-    logger.info("Home route called");
     res.render("index");
 })
 

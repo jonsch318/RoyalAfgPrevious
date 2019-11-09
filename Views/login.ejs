@@ -12,6 +12,7 @@
                     <input type="password" id="password" name="password" class="form-control"
                         placeholder="Enter Password" />
                 </div>
+                <input type="hidden" name="_csrf" value="<%= xsrfToken %>" />
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
             <p class="lead mt-4">

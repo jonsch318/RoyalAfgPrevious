@@ -12,7 +12,10 @@ const loggingFormat = winston.format.printf(({
 
 module.exports = winston.createLogger({
     level: "debug",
-    format: winston.format.combine(winston.format.timestamp(), loggingFormat),
+    format: winston.format.combine(
+        winston.format.splat(),
+        winston.format.timestamp(),
+        loggingFormat),
     transports: [
         new winston.transports.Console({
             format: winston.format.colorize({
@@ -24,7 +27,7 @@ module.exports = winston.createLogger({
             level: "silly"
         }),
         new winston.transports.MongoDB({
-            db: require("./keys").MonoURI,
+            db: require("./keys").MongoURI,
         })
     ]
 })

@@ -1,5 +1,6 @@
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">Welcome <%= user.name %></p>
 <form action="/account/logout" method="POST">
-    <input type="submit" class="btn btn-secondary" value="Send"></input>
+    <input type="hidden" name="_csrf" value="<%= xsrfToken %>" />
+    <input type="submit" class="btn btn-secondary" value="Logout" />
 </form>
