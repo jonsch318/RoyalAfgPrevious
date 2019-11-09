@@ -1,11 +1,20 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
-const session = require("express-session");
-const mongoStore = require("connect-mongo")(session);
 const cookieParser = require("cookie-parser");
+const passport = require("passport");
+const logger = require("./config/logger");
+
+logger.error("Started")
+
 
 const app = express();
+
+//#region Passport config
+
+require("./config/passport")(passport);
+
+//#endregion
 
 //#region Db Config
 
@@ -15,7 +24,8 @@ const db = require("./config/keys").MonoURI;
 
 // Connect to Mongo
 mongoose.connect(db, {
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     })
     .then(() => {
         console.log("MongoDb connected successfully");
@@ -39,21 +49,26 @@ app.use(express.urlencoded({
 }))
 
 //Express Session (Cookie) => remember logged in 
-app.use(session({
-    name: "RoyalAfgSid",
-    resave: false,
-    saveUninitialized: false,
-    secret: "gJv*iaBLn@k*!zp*ocWWfzvfoZaEz6a6#fU@$DL4",
-    // store: new mongoStore({
-    //     mongooseConnection: mongoose.connection
-    // }),
-    cookie: {
-        httpOnly: 1000 * 60 * 60 * 24 * 3,
-        sameSite: true,
-        secure: false,
-        // TODO: secure to true if https connection are possible.
-    }
-}));
+//app.use(cookieParser());
+const sessionConfig = require("./config/auth").sessionConfig(mongoose)
+app.use(sessionConfig);
+
+//#endregion
+
+//#region Authorization with Passport
+
+app.use(passport.initialize());
+app.use(passport.session())
+
+//#endregion
+
+//#region Preventions
+
+// //xss
+//app.use(require("./config/sanitizing").xssPrevention);
+
+// //xsrf
+//app.use(require("./config/sanitizing").xsrfPrevention);
 
 //#endregion
 
