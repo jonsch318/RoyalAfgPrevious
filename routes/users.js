@@ -2,33 +2,23 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
+const passport = require("passport");
+const {
+    ensureAuth
+} = require("../config/auth");
 
 router.get("/login", (req, res) => {
     res.render("login");
 })
 
 //Login Handle
+router.post("/login", (req, res, next) => {
 
-router.post("/login", (req, res) => {
-    const {
-        email,
-        password
-    } = req.body;
-
-    User.findOne({
-            email: email
-        })
-        .then(user => {
-            bcrypt.compare(password, user.password, () => {
-                req.session.userId = user.id;
-                req.session.save();
-                res.json(user);
-            });
-        })
-        .catch(err => console.log(err))
-
-
-
+    passport.authenticate("local", {
+        successRedirect: "/account/myAccount",
+        failureRedirect: "/account/login",
+        failureFlash: false,
+    })(req, res, next);
 });
 
 // Register
@@ -37,7 +27,7 @@ router.get("/register", (req, res) => {
 });
 
 //Register Handle
-router.post("/register", (req, res) => {
+router.post("/register", (req, res, next) => {
     console.log(req.body);
     const {
         name,
@@ -85,7 +75,11 @@ router.post("/register", (req, res) => {
             //Save User
             newUser.save()
                 .then(user => {
-                    res.json(user);
+                    passport.authenticate("local", {
+                        successRedirect: "/account/myAccount",
+                        failureRedirect: "/account/login",
+                        failureFlash: false,
+                    })(req, res, next);
                 })
                 .catch(err => console.log(err))
 
@@ -94,8 +88,17 @@ router.post("/register", (req, res) => {
 
 });
 
-router.post("/logout", (req, res) => {
-
+router.post("/logout", (req, res, next) => {
+    req.logout();
+    res.redirect("/");
 });
+
+router.get("/myAccount", ensureAuth, (req, res, next) => {
+    res.render("myAccount", {
+        user: req.user
+    });
+})
+
+
 
 module.exports = router;
