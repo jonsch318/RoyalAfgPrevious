@@ -1,9 +1,6 @@
 const winston = require("winston");
-const {
-    combine,
-    timestamp,
-    printf
-} = winston.format;
+const mongoose = require("mongoose");
+require("winston-mongodb");
 
 const loggingFormat = winston.format.printf(({
     level,
@@ -15,16 +12,19 @@ const loggingFormat = winston.format.printf(({
 
 module.exports = winston.createLogger({
     level: "debug",
-    format: combine(timestamp(), loggingFormat),
+    format: winston.format.combine(winston.format.timestamp(), loggingFormat),
     transports: [
         new winston.transports.Console({
             format: winston.format.colorize({
                 all: true,
             })
         }),
-        // new winston.transports.File({
-        //     filename: "./logs/entire.log",
-        //     level: "silly"
-        // })
+        new winston.transports.File({
+            filename: "./logs/entire.log",
+            level: "silly"
+        }),
+        new winston.transports.MongoDB({
+            db: require("./keys").MonoURI,
+        })
     ]
 })

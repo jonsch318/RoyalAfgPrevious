@@ -5,9 +5,6 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const logger = require("./config/logger");
 
-logger.error("Started")
-
-
 const app = express();
 
 //#region Passport config
@@ -49,7 +46,7 @@ app.use(express.urlencoded({
 }))
 
 //Express Session (Cookie) => remember logged in 
-//app.use(cookieParser());
+app.use(cookieParser());
 const sessionConfig = require("./config/auth").sessionConfig(mongoose)
 app.use(sessionConfig);
 
@@ -65,10 +62,16 @@ app.use(passport.session())
 //#region Preventions
 
 // //xss
-//app.use(require("./config/sanitizing").xssPrevention);
+app.use(require("./config/sanitizing").xssPrevention);
 
 // //xsrf
-//app.use(require("./config/sanitizing").xsrfPrevention);
+app.use(require("./config/sanitizing").xsrfPrevention);
+
+//#endregion
+
+//#region Logging config
+
+require("./config/loggingConfig")(app);
 
 //#endregion
 
@@ -82,9 +85,13 @@ app.use("/account", require("./routes/users"));
 
 //#endregion
 
+//#region Port and Server start
+
 // Port 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+    logger.debug(`Server started on port ${PORT}`);
 });
+
+//#endregion
