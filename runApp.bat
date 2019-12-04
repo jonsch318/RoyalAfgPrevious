@@ -1,0 +1,2 @@
+/../../node/node app
+pause

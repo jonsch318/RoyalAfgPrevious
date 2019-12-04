@@ -20,14 +20,15 @@ require("./config/passport")(passport);
 const db = require("./config/keys").MongoURI;
 
 // Connect to Mongo
-mongoose.connect(db, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => {
-        console.log("MongoDb connected successfully");
-    })
-    .catch(err => console.log(err));
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("MongoDb connected successfully");
+  })
+  .catch(err => console.log(err));
 
 //#endregion
 
@@ -38,16 +39,18 @@ app.use(expressLayouts);
 app.set("view engine", "ejs");
 
 //Bodyparser => let nodejs decode request with bodies and form posts.
-// Raw Json 
+// Raw Json
 app.use(express.json());
 //Form posts
-app.use(express.urlencoded({
+app.use(
+  express.urlencoded({
     extended: false
-}))
+  })
+);
 
-//Express Session (Cookie) => remember logged in 
+//Express Session (Cookie) => remember logged in
 app.use(cookieParser());
-const sessionConfig = require("./config/auth").sessionConfig(mongoose)
+const sessionConfig = require("./config/auth").sessionConfig(mongoose);
 app.use(sessionConfig);
 
 //#endregion
@@ -55,7 +58,7 @@ app.use(sessionConfig);
 //#region Authorization with Passport
 
 app.use(passport.initialize());
-app.use(passport.session())
+app.use(passport.session());
 
 //#endregion
 
@@ -80,18 +83,19 @@ require("./config/loggingConfig")(app);
 // Home Routes (index, about etc.) => home.js router
 app.use("/", require("./routes/home"));
 
-// User Routes (account/login, account/register, account/myAccount, etc.) => 
+// User Routes (account/login, account/register, account/myAccount, etc.) =>
 app.use("/account", require("./routes/users"));
 
 //#endregion
 
 //#region Port and Server start
 
-// Port 
+
+// Port
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    logger.debug("Server started on port %s", PORT);
+  logger.debug("Server started on port %s", PORT);
 });
 
 //#endregion

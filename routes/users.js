@@ -5,6 +5,11 @@ const User = require("../models/User");
 const passport = require("passport");
 const xsrfProtect = require("../config/sanitizing").xsrfPrevention;
 const { ensureAuth } = require("../config/auth");
+const multer = require("multer");
+const multerStorage = require("../config/multer");
+const logger = require("../config/logger");
+const uuid = require("uuid");
+const path = require("path");
 
 router.get("/login", (req, res) => {
   if (req.user) {
@@ -98,5 +103,28 @@ router.get("/myAccount", ensureAuth, (req, res, next) => {
     xsrfToken: req.csrfToken()
   });
 });
+
+const uploadProfilePicture = multer({
+  storage: multerStorage,
+  limits: {
+    fileSize: 20000000
+  },
+  fileFilter: (req, file, cb) => {
+    // regex
+    const filetypes = /jpeg|jpg|png|gif|tif/;
+
+    cb(null, filetypes.test(path.extname(file.originalname)));
+  }
+}).single("myFile");
+
+router.post(
+  "/myAccount/profilePicture",
+  uploadProfilePicture,
+  ensureAuth,
+  (req, res) => {
+    logger.warn(`File uploaded ${req.file.filename}}`);
+    res.send({ msg: "file uploaded successfully" });
+  }
+);
 
 module.exports = router;

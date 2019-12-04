@@ -1,0 +1,115 @@
+form .container {
+  margin-top: 20px;
+}
+
+form .form-input {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+  font-family: inherit;
+  width: 100%;
+  font-size: 16px;
+}
+
+form .form-input input[type="text"],
+form .form-input input[type="password"] {
+  display: block;
+  width: calc(100% - 30px);
+  padding: 0 15px;
+  font-size: inherit;
+  height: 40px;
+  border-radius: 5px;
+  margin: 0;
+  outline: none;
+  border: solid 1px #ccc;
+  -webkit-box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.3);
+          box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.3);
+  -webkit-transition: border-color ease-in-out 0.2s;
+  transition: border-color ease-in-out 0.2s;
+  position: relative;
+  font: inherit;
+}
+
+form .form-input input[type="text"]:hover,
+form .form-input input[type="password"]:hover {
+  border-color: var(--hightlight);
+}
+
+form .form-input input[type="text"]::-webkit-input-placeholder,
+form .form-input input[type="password"]::-webkit-input-placeholder {
+  color: #888;
+}
+
+form .form-input input[type="text"]:-ms-input-placeholder,
+form .form-input input[type="password"]:-ms-input-placeholder {
+  color: #888;
+}
+
+form .form-input input[type="text"]::-ms-input-placeholder,
+form .form-input input[type="password"]::-ms-input-placeholder {
+  color: #888;
+}
+
+form .form-input input[type="text"]::placeholder,
+form .form-input input[type="password"]::placeholder {
+  color: #888;
+}
+
+form .form-input input[type="checkbox"] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  outline: none;
+  border: solid 1px var(--hightlight);
+}
+
+form .form-input input[type="checkbox"]:hover {
+  border-color: var(--hightlightHover);
+}
+
+form .form-input input[type="checkbox"]:checked {
+  background: var(--hightlight);
+}
+
+form .form-input input[type="checkbox"]:checked:after {
+  content: "\2714";
+  font-size: 14px;
+  position: absolute;
+  top: -4px;
+  left: 1px;
+  color: var(--text);
+}
+
+form .form-input label {
+  font-size: inherit;
+  font: inherit;
+  top: 10px;
+  display: block;
+  max-width: 100%;
+  margin-bottom: 10px;
+  color: #888;
+}
+
+form .cs-submit {
+  margin: 0;
+  display: block;
+  width: 100%;
+  padding: 10px 10px;
+  border: none;
+  background: var(--hightlight);
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+  color: #fff;
+  border-radius: 5px;
+  -webkit-transition: background ease-in-out 0.2s;
+  transition: background ease-in-out 0.2s;
+}
+
+form .cs-submit:hover {
+  background: var(--hightlightHover);
+}
+/*# sourceMappingURL=form.css.map */

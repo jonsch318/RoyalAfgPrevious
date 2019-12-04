@@ -1,0 +1,129 @@
+$font: "Source Sans Pro";
+
+:root {
+  --hightlight: #fdc200;
+  --hightlightHover: #e6b001;
+  --text: #333333;
+}
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  main {
+    .signin-wrapper {
+      margin: 75px auto 0 auto;
+      width: auto;
+      height: auto;
+      max-width: 350px;
+      overflow: hidden;
+      padding: 0 10px;
+    }
+
+    .username-container {
+      margin-left: 0;
+      margin-right: 0;
+      font-family: "Source Sans Pro";
+
+      .row {
+        display: block;
+
+        .signin-header {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 3fr 1fr;
+
+          .col.title {
+            grid-column: 1;
+
+            h1 {
+              margin: 0;
+            }
+          }
+          .col.logo {
+            grid-column: 2;
+            display: grid;
+            justify-items: right;
+            align-items: center;
+
+            .logo.img {
+              background: url(https://via.placeholder.com/30) 30px 30px;
+              width: 30px;
+              height: 30px;
+            }
+          }
+        }
+
+        &.register-link {
+          hr {
+            text-align: center;
+            border: none;
+            height: auto;
+            outline: 0;
+            position: relative;
+
+            &::before {
+              background: #eaeaea;
+              content: "";
+              height: 1px;
+              left: 0;
+              position: absolute;
+              top: 50%;
+              width: 100%;
+            }
+
+            &::after {
+              background-color: #fff;
+              color: #4b4b4b;
+              content: attr(data-content);
+              display: inline-block;
+              font-size: 17px;
+              font-weight: 300;
+              line-height: 21px;
+              padding: 0 0.5em;
+              position: relative;
+            }
+          }
+
+          span {
+            display: block;
+            text-align: center;
+
+            a {
+              text-decoration: solid;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .password-container {
+      display: none;
+      position: relative;
+      font-family: $font;
+
+      .row {
+        &.rememberMeInput {
+          .form-input {
+            display: block;
+
+            label {
+              display: inline;
+              margin-right: 5px;
+            }
+            input {
+              margin: 0;
+              position: relative;
+              top: 0;
+              transform: translate(0, 10%);
+            }
+          }
+        }
+      }
+    }
+  }
+}

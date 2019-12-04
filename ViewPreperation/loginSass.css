@@ -1,0 +1,133 @@
+:root {
+  --hightlight: #fdc200;
+  --hightlightHover: #e6b001;
+  --text: #333333;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html main .signin-wrapper {
+  margin: 75px auto 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 350px;
+  overflow: hidden;
+  padding: 0 10px;
+}
+
+html main .username-container {
+  margin-left: 0;
+  margin-right: 0;
+  font-family: "Source Sans Pro";
+}
+
+html main .username-container .row {
+  display: block;
+}
+
+html main .username-container .row .signin-header {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 1fr;
+      grid-template-columns: 3fr 1fr;
+}
+
+html main .username-container .row .signin-header .col.title {
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+
+html main .username-container .row .signin-header .col.title h1 {
+  margin: 0;
+}
+
+html main .username-container .row .signin-header .col.logo {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  display: -ms-grid;
+  display: grid;
+  justify-items: right;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html main .username-container .row .signin-header .col.logo .logo.img {
+  background: url(https://via.placeholder.com/30) 30px 30px;
+  width: 30px;
+  height: 30px;
+}
+
+html main .username-container .row.register-link hr {
+  text-align: center;
+  border: none;
+  height: auto;
+  outline: 0;
+  position: relative;
+}
+
+html main .username-container .row.register-link hr::before {
+  background: #eaeaea;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+html main .username-container .row.register-link hr::after {
+  background-color: #fff;
+  color: #4b4b4b;
+  content: attr(data-content);
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 21px;
+  padding: 0 0.5em;
+  position: relative;
+}
+
+html main .username-container .row.register-link span {
+  display: block;
+  text-align: center;
+}
+
+html main .username-container .row.register-link span a {
+  -webkit-text-decoration: solid;
+          text-decoration: solid;
+}
+
+html main .username-container .row.register-link span a:hover {
+  text-decoration: underline;
+}
+
+html main .password-container {
+  display: none;
+  position: relative;
+  font-family: "Source Sans Pro";
+}
+
+html main .password-container .row.rememberMeInput .form-input {
+  display: block;
+}
+
+html main .password-container .row.rememberMeInput .form-input label {
+  display: inline;
+  margin-right: 5px;
+}
+
+html main .password-container .row.rememberMeInput .form-input input {
+  margin: 0;
+  position: relative;
+  top: 0;
+  -webkit-transform: translate(0, 10%);
+          transform: translate(0, 10%);
+}
+/*# sourceMappingURL=loginSass.css.map */

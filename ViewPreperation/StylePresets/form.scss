@@ -1,0 +1,93 @@
+form {
+  .container {
+    margin-top: 20px;
+  }
+
+  .form-input {
+    display: grid;
+    position: relative;
+    font-family: inherit;
+    width: 100%;
+    font-size: 16px;
+
+    input[type="text"],
+    input[type="password"] {
+      display: block;
+      width: calc(100% - 30px);
+      padding: 0 15px;
+      font-size: inherit;
+      height: 40px;
+      border-radius: 5px;
+      margin: 0;
+      outline: none;
+      border: solid 1px #ccc;
+      box-shadow: 0px 0px 4px rgba($color: #ccc, $alpha: 0.3);
+      transition: border-color ease-in-out 0.2s;
+      position: relative;
+      font: inherit;
+
+      &:hover {
+        border-color: var(--hightlight);
+      }
+
+      &::placeholder {
+        color: #888;
+      }
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      background: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+      outline: none;
+      border: solid 1px var(--hightlight);
+
+      &:hover {
+        border-color: var(--hightlightHover);
+      }
+
+      &:checked {
+        background: var(--hightlight);
+      }
+
+      &:checked:after {
+        content: "\2714";
+        font-size: 14px;
+        position: absolute;
+        top: -4px;
+        left: 1px;
+        color: var(--text);
+      }
+    }
+
+    label {
+      font-size: inherit;
+      font: inherit;
+      top: 10px;
+      display: block;
+      max-width: 100%;
+      margin-bottom: 10px;
+      color: #888;
+    }
+  }
+
+  .cs-submit {
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    background: var(--hightlight);
+    font-family: "Source Sans Pro";
+    font-size: 20px;
+    color: #fff;
+    border-radius: 5px;
+    transition: background ease-in-out 0.2s;
+
+    &:hover {
+      background: var(--hightlightHover);
+    }
+  }
+}
