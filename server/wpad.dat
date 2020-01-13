@@ -1,0 +1,24 @@
+function endsWith(haystack, needle) {
+	if(haystack.length < needle.length) return false ;
+	return (haystack.substring(haystack.length-needle.length) == needle)
+}
+function startsWith(haystack, needle) {
+	if(haystack.length < needle.length) return false ;
+	return (haystack.substr(0, needle.length) == needle) ;
+}
+
+function FindProxyForURL(url, host)
+{
+	var lurl = url.toLowerCase() ;
+	if(startsWith(lurl, "http:") || startsWith(lurl, "https:") || startsWith(lurl, "ftp:")) {
+		if(host.indexOf(".") == -1) return "DIRECT" ; // kein punkt im namen?
+		if(endsWith(host, ".local")) return "DIRECT" ; // lokale zone?
+		if(endsWith(host, ".mnsplus")) return "DIRECT" ; // lokale zone?
+		if(host == "127.0.0.1") return "DIRECT" ; // localhost
+		if(startsWith(host, "172.16.")) return "DIRECT" ;
+		// alles nicht? dann ist es wohl remote
+		return "PROXY MNSPlusProxy:8080" ;
+	} else {
+		return "DIRECT" ;
+	}
+}

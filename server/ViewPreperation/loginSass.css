@@ -1,6 +1,6 @@
 :root {
-  --hightlight: #fdc200;
-  --hightlightHover: #e6b001;
+  --hightlight: #ea412a;
+  --hightlightHover: #d83f2a;
   --text: #333333;
 }
 
@@ -84,7 +84,7 @@ html main .username-container .row.register-link hr::before {
 
 html main .username-container .row.register-link hr::after {
   background-color: #fff;
-  color: #4b4b4b;
+  color: var(--text);
   content: attr(data-content);
   display: inline-block;
   font-size: 17px;
@@ -116,6 +116,10 @@ html main .password-container {
 
 html main .password-container .row.rememberMeInput .form-input {
   display: block;
+}
+
+html main .password-container .row.container #welcome-header{
+	text-align: center;
 }
 
 html main .password-container .row.rememberMeInput .form-input label {
