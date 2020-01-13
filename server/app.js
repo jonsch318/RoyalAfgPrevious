@@ -4,8 +4,19 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const logger = require("./config/logger");
+const globalTunnel = require("global-tunnel");
 
 const app = express();
+
+//#region Global tunnel
+
+globalTunnel.initialize({
+  host: "MNSPLUSPROXY",
+  port: 8080,
+  tunnel: "both"
+});
+
+//#endregion
 
 //#region Passport config
 
@@ -89,7 +100,6 @@ app.use("/account", require("./routes/users"));
 //#endregion
 
 //#region Port and Server start
-
 
 // Port
 const PORT = process.env.PORT || 5000;
