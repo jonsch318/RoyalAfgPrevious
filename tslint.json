@@ -1,6 +1,10 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "variable-name": [
+      true,
+      "allow-leading-underscore"
+    ],
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {
@@ -68,7 +72,8 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [
-      true,
+      false,
+      "double",
       "single"
     ],
     "trailing-comma": false,
