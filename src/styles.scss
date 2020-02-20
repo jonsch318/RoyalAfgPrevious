@@ -1,7 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
 
-:root {
-    --hightlight: #fdc200;
-    --hightlightHover: #e6b001;
-    --text: #333333;
-  }
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+
+@import "custom-components-theme";
+@import "./theme";
+@include mat-core($fontConfig);
+
+@import "themes/gold";
+@import "themes/dark";
+@include angular-material-theme($theme-dark);
+@include custom-components-theme($theme-dark);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+// Theme Init
+.dark-theme{
+}
+
+.light-theme{
+  @include angular-material-theme($theme-gold);
+  @include custom-components-theme($theme-gold);
+}
+
+.mat-raised-button, .mat-stroked-button, .mat-flat-button {
+  padding: 0 1.15em;
+  margin: 0 .65em;
+  min-width: 3em;
+  line-height: 36.4px
+}
+
+.mat-standard-chip {
+  padding: .5em .85em;
+  min-height: 2.5em;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+body{
+  width: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
