@@ -13,6 +13,7 @@ import { JwtAuthGuard } from './strategies/jwt-auth.guard';
 @Module({
   imports:
     [
+      PassportModule.register({defaultStrategy: "jwt"}),
       JwtModule.register({
         secret: jwtConstants.secret,
         signOptions: {
@@ -20,7 +21,6 @@ import { JwtAuthGuard } from './strategies/jwt-auth.guard';
         }
       }),
       UserModule,
-      PassportModule,
     ],
   controllers: [AuthController],
   providers:

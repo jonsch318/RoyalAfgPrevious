@@ -2,7 +2,7 @@ import {Document} from "mongoose";
 import * as bcrypt from "bcryptjs"
 
 export interface User extends Document{
-  id: string;
+  id: string,
   fullname: string,
   username: string,
   hash: string,
