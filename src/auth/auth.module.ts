@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants/jwt.constants';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtAuthGuard } from './strategies/jwt-auth.guard';
+import { WalletModule } from '../wallet/wallet.module';
 
 @Module({
   imports:
@@ -21,6 +22,7 @@ import { JwtAuthGuard } from './strategies/jwt-auth.guard';
         }
       }),
       UserModule,
+      WalletModule
     ],
   controllers: [AuthController],
   providers:

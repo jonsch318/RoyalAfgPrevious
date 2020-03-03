@@ -4,21 +4,26 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../../../user/interfaces/user';
 import { RegisterDto } from '../../dtos/register-dto';
 import {JwtService} from "@nestjs/jwt";
+import { WalletService } from '../../../wallet/services/wallet/wallet.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
+    private readonly walletService: WalletService,
     @InjectModel("User") private readonly _userModel: Model<User>,
   ) {
   }
 
   async register(dto: RegisterDto): Promise<User>{
     const user = new this._userModel(dto);
-      await user.setPassword(dto.password);
-      await user.save();
-      Logger.verbose(`User created ${user.username}`);
-      return user;
+    await user.setPassword(dto.password);
+    await user.save();
+
+    await this.walletService.create(user);
+
+    Logger.verbose(`User created ${user.username}`);
+    return user;
   }
 
   async validateUser(username: string, password: string): Promise<User>{

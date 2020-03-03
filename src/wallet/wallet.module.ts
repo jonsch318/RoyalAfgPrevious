@@ -10,6 +10,10 @@ import { WalletService } from './services/wallet/wallet.service';
     MongooseModule.forFeature([{name: WalletSchemaName, schema: WalletSchema}])
   ],
   controllers: [PurchaseController],
-  providers: [PurchaseService, WalletService]
+  providers: [PurchaseService, WalletService],
+  exports: [
+    WalletService
+  ]
+
 })
 export class WalletModule {}
