@@ -1,36 +1,24 @@
-import { EUserActions, UserActions } from '../actions/user.actions';
 import { initialUserState, IUserState } from '../state/user.state';
+import { AuthActions, AuthActionsTypes } from '../actions/auth.action';
 
 export const userReducer = (
   state=  initialUserState,
-  action: UserActions
+  action: AuthActions
 ): IUserState => {
+
   switch (action.type) {
-    case EUserActions.GetUserSuccess: {
+    case AuthActionsTypes.LoginSuccess: {
+      console.log("State updated: " + action.payload.username);
       return {
         ...state,
         user: action.payload
       };
     }
 
-    case EUserActions.GetSignedIn: {
-      return {
-        ...state,
-        isLoggedIn: state.user != null,
-      }
+    default: {
+      return state
     }
-
-    case EUserActions.SetUser: {
-      console.log("The action was SetUser and " + action.payload.username);
-      return {
-        ...state,
-        user: action.payload,
-        isLoggedIn: true,
-      }
-    }
-
-    default:
-    return state;
   }
+
 };
 

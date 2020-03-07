@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faArrowDown} from "@fortawesome/free-solid-svg-icons";
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { IAppState } from '../../store/state/app.state';
-import { map } from 'rxjs/operators';
-import { GetUser, SetUser } from '../../store/actions/user.actions';
+import { GetUser } from '../../store/actions/user.actions';
+import { selectIsLoggedIn } from '../../store/selectors/user.selector';
+import { IUser } from '../../interfaces/user';
 
 @Component({
   selector: 'app-navbar',
@@ -14,13 +14,20 @@ export class NavbarComponent implements OnInit {
   signedIn = false;
   state = "";
   stateLocked = false;
-  temp = "";
-  dropDown = faArrowDown;
-  user$ = this._store.pipe(map((val) => val.user));
+  user: IUser;
 
   constructor(
     private readonly _store: Store<IAppState>
-  ) { }
+  ) {
+    this._store.select(selectIsLoggedIn).subscribe((val) => {
+        console.log("The user signed in: " + val);
+        this.signedIn = val;
+    })
+    this._store.subscribe(state => {
+      console.log("User changed: " + state.user.user.username);
+      this.user = state.user.user
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -61,12 +68,7 @@ export class NavbarComponent implements OnInit {
   }
 
   updateUser(){
-    this._store.dispatch(new SetUser({
-      username: "ASsd",
-      fullname: "asdasd",
-      id: "asdasdas",
-      birthdate: new Date(),
-    }));
+    this._store.dispatch(new GetUser());
   }
 
 }

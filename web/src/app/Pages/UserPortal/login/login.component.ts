@@ -1,53 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {animate, style, transition, trigger} from '@angular/animations';
-import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {Title} from "@angular/platform-browser";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-
-/*@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  animations: [
-    trigger("usernameBox", [
-      transition(":enter", [
-        style({transform: "translateX(-75vw)"}),
-        animate("350ms 100ms ease"),
-      ]),
-      transition(":leave", [
-        animate("350ms ease", style({transform: "translateX(-100vw)"})),
-      ]),
-    ]),
-    trigger("passwordBox", [
-      transition(":enter", [
-        style({transform: "translateX(750vw)"}),
-        animate("350ms 100ms ease"),
-      ]),
-      transition(":leave", [
-        animate("350ms ease", style({transform: "translateX(100vw)"})),
-      ]),
-    ]),
-  ]
-})
-export class LoginComponent implements OnInit {
-
-  state = "username";
-  name = '';
-  faback = faArrowRight;
-
-  constructor(private titleService: Title) {
-  }
-
-  ngOnInit() {
-    this.titleService.setTitle("Royal Afg | Login")
-  }
-
-  changeState() {
-    this.state = this.state === "username" ? "password" : "username";
-    this.faback = this.state === "username" ? faArrowRight : faArrowLeft;
-  }
-}*/
+import { AuthService } from '../../../services/auth/auth.service';
+import { LoginDto } from '../../../../../../server/src/auth/dtos/login-dto';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../../store/state/app.state';
+import { Login } from '../../../store/actions/auth.action';
 
 @Component({
   selector: "app-login",
@@ -57,7 +15,10 @@ export class LoginComponent implements OnInit {
 export class LoginComponent implements OnInit{
   formGroup: FormGroup;
 
-  constructor(private titleService: Title) {
+  constructor(
+    private titleService: Title,
+    private readonly _store: Store<IAppState>,
+    ) {
   }
 
   ngOnInit(): void {
@@ -71,6 +32,14 @@ export class LoginComponent implements OnInit{
       "username": new FormControl(null, [Validators.required, Validators.maxLength(100)]),
       "password": new FormControl(null, [Validators.required, Validators.maxLength(100)]),
     })
+  }
+
+  submit(){
+    console.log("Submit called");
+    if(this.formGroup.valid){
+      const value: LoginDto = this.formGroup.value;
+      this._store.dispatch(new Login(value));
+    }
   }
 
 }

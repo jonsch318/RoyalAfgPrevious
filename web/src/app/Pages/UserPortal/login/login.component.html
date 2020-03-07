@@ -1,5 +1,5 @@
 <div class="login-container">
-  <form [formGroup]="formGroup">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
       <div class="signin-wrapper">
         <mat-horizontal-stepper class="background" linear [formGroup]="formGroup">
           <mat-step [stepControl]="formGroup.get('username')">
@@ -35,7 +35,7 @@
                   <mat-label>
                     Password
                   </mat-label>
-                  <input matInput placeholder="Enter your password..." type="password">
+                  <input matInput placeholder="Enter your password..." type="password" formControlName="password">
               </mat-form-field>
               </div>
               <div class="form-field">

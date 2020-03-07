@@ -13,10 +13,10 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/reducers/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './store/effects/user.effect';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AuthEffects } from './store/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { environment } from '../environments/environment';
         }),
         StoreModule.forRoot(appReducers),
         EffectsModule.forRoot([
-          UserEffects
+          AuthEffects
         ]),
         StoreRouterConnectingModule.forRoot({stateKey: "router"}),
         !environment.production ? StoreDevtoolsModule.instrument() : [],

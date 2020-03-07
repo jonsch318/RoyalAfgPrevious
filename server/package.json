@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nest-middlewares/cookie-parser": "^6.0.0",
+    "@nest-middlewares/cors": "^6.0.1",
     "@nestjs/common": "^6.10.14",
     "@nestjs/config": "^0.2.4",
     "@nestjs/core": "^6.10.14",

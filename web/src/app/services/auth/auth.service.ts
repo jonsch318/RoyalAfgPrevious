@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TokenService } from './token.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { User } from '../../../../../server/src/user/interfaces/user';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../../store/state/app.state';
+import { LoginDto } from '../../../../../server/src/auth/dtos/login-dto';
+import { IUser } from '../../interfaces/user';
+import { SetUser } from '../../store/actions/user.actions';
 
 const AuthUrl = "http://localhost:3000/account";
 
@@ -12,41 +14,20 @@ const AuthUrl = "http://localhost:3000/account";
 })
 export class AuthService{
 
-  private _user$ = new BehaviorSubject(null);
-
-  public isLoggedIn$: Observable<boolean>;
-
   constructor(
+    private readonly _store: Store<IAppState>,
     private readonly _httpClient: HttpClient,
-    private readonly _tokenService: TokenService,
   ) {
-    this.isLoggedIn$ = this._user$.pipe(map((val) => {
-      return !val;
-    }));
+
   }
 
-  public async signout(): Promise<any>{
-
-    const header = new HttpHeaders({
-      Authorization: await this._tokenService.deleteToken()
-    });
-
-    this._httpClient.post(AuthUrl + "/signout", {header});
-  }
-
-  public async signin(username: string, password: string): Promise<User>{
-    await this._httpClient.post<any>(`${AuthUrl}/signin`, {username, password})
-      .pipe(map((val) => {
-        this._tokenService.setToken(val.accessToken);
-
-      }))
-  }
-
-  public async register(user: User): Promise<User>{
-    this._httpClient.post<User>(`${AuthUrl}/register`, {user})
-      .subscribe((val) => {
-
+  public signin(dto: LoginDto): Observable<IUser>{
+    console.log(`Sign in started with username ${dto.username} and password ${dto.password}`);
+    return this._httpClient.post<IUser>("http://localhost:3000/account/signin", {
+      username: dto.username,
+      password: dto.password,
     })
   }
+
 
 }

@@ -18,14 +18,14 @@
     <nav class="identity nav">
       <ul class="nav-list">
           <li *ngIf="!signedIn">
-            <span>Name: {{(user$ | async).user.username}}</span>
+            <span>Register</span>
           </li>
           <li *ngIf="!signedIn">
             <a routerLink="/login">
               <span>Sign in</span>
             </a>
           </li>
-        <li *ngIf="signedIn"><span>my account</span></li>
+        <li *ngIf="signedIn"><span>Is Logged in</span></li>
       </ul>
     </nav>
   </div>
