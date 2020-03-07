@@ -44,12 +44,15 @@ export class AuthService {
   async signin(user: User): Promise<any> {
     const payload = {
       username: user.username,
-      sub: user.id,
     };
     Logger.verbose(`Created jwt with id ${user.id}`);
-    return {
-      accessToken: await this.jwtService.signAsync(payload),
-    }
+    return await this.jwtService.signAsync(payload, {
+      subject: user.id,
+      expiresIn: "10d",
+      issuer: "http://localhost:3000",
+      algorithm: 'HS256',
+      audience: "http://localhost:3000",
+    });
   }
 
 }

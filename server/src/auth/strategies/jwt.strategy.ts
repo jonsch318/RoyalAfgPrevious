@@ -3,8 +3,6 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { jwtConstants } from '../constants/jwt.constants';
 import { User } from '../../user/interfaces/user';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { UserService } from '../../user/services/user/user.service';
 
 @Injectable()
@@ -13,7 +11,13 @@ export class JwtStrategy extends PassportStrategy(Strategy){
     private readonly _userService: UserService
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([(req) => {
+        let token = null;
+        if(req && req.signedCookies){
+          token = req.signedCookies["SESSIONID"];
+        }
+        return token;
+      }]),
       ignoreExpiration: false,
       secretOrKey: jwtConstants.secret,
     });

@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { WalletModule } from './wallet/wallet.module';
+import { CookieParserMiddleware } from '@nest-middlewares/cookie-parser';
 
 @Module({
   imports:
@@ -15,4 +16,10 @@ import { WalletModule } from './wallet/wallet.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule{
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(CookieParserMiddleware).forRoutes("/");
+    CookieParserMiddleware.configure("TEMPSECRET", {});
+  }
+
+}
