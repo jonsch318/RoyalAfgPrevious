@@ -15,6 +15,15 @@ export const userReducer = (
       };
     }
 
+    case AuthActionsTypes.LoadUserSuccess: {
+      console.log("Loaded User successfully: " + action.payload.username);
+      return {
+        ...state,
+        user: action.payload,
+      }
+    }
+
+
     default: {
       return state
     }

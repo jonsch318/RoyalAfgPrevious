@@ -1,10 +1,12 @@
-import { Body, Request, Controller, Post, UseGuards, Req, Res, Logger } from '@nestjs/common';
+import { Body, Request, Controller, Post, UseGuards, Req, Res, Logger, HttpCode, Header } from '@nestjs/common';
 import { RegisterDto } from '../../dtos/register-dto';
 import { AuthService } from '../../services/auth/auth.service';
 import { LocalAuthGuard } from '../../strategies/local-auth.guard';
 import { LoginDto } from '../../dtos/login-dto';
 import * as moment from "moment";
 import { UserService } from '../../../user/services/user/user.service';
+import { Status } from 'tslint/lib/runner';
+import { CookieOptions, Cookies, SetCookies } from '@nestjsplus/cookies';
 
 @Controller('account')
 export class AuthController {
@@ -20,23 +22,31 @@ export class AuthController {
     return this._authService.register(dto);
   }
 
+  @SetCookies()
   @UseGuards(LocalAuthGuard)
   @Post("signin")
-  async signin(@Body() dto: LoginDto, @Req() req, @Res() res){
+  async signin(@Body() dto: LoginDto, @Req() req, ){
     const token = await this._authService.signin(req.user);
-    res.cookie("SESSIONID", token, {
+    const options: CookieOptions = {
+      expires: moment().add(10, "days").toDate(),
+      signed: false,
+      secure: false,
+      sameSite: false,
       httpOnly: true,
-      signed: true,
-      sameSite: 'strict',
-      expires: moment.utc().add(10, "days").toDate()
-    });
+    };
+    req._cookies = [
+      {
+        name: "SESSIONID",
+        value: token,
+        options: options,
+      }
+    ];
     const user = await this._userService.findOne(dto.username);
-    res.json({
-      'id': user.id,
-      'username': user.username,
-      'fullname': user.fullname,
-    }, 200);
     Logger.debug("Created JWT and Cookie");
-    return res;
+    return {
+      id: user.id,
+      username: user.username,
+      fullname: user.fullname,
+    };
   }
 }

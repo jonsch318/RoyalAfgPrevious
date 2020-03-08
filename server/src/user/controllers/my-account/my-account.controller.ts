@@ -8,6 +8,12 @@ export class MyAccountController {
   @Get("/")
   getProfile(@Req() req){
     Logger.debug("Sending account infos");
-    return req.user;
+    const user = req.user;
+    return {
+      id: user.id,
+      username: user.username,
+      birthdate: user.birthdate,
+      fullname: user.fullname,
+    }
   }
 }

@@ -19,7 +19,7 @@ import { CorsMiddleware } from '@nest-middlewares/cors';
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer): any {
-    consumer.apply(CookieParserMiddleware, CorsMiddleware).forRoutes("/");
+    consumer.apply(CookieParserMiddleware).forRoutes("/");
     CookieParserMiddleware.configure("TEMPSECRET", {});
   }
 

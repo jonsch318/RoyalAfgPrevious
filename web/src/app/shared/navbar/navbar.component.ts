@@ -4,6 +4,7 @@ import { IAppState } from '../../store/state/app.state';
 import { GetUser } from '../../store/actions/user.actions';
 import { selectIsLoggedIn } from '../../store/selectors/user.selector';
 import { IUser } from '../../interfaces/user';
+import { LoadUser } from '../../store/actions/auth.action';
 
 @Component({
   selector: 'app-navbar',
@@ -68,7 +69,7 @@ export class NavbarComponent implements OnInit {
   }
 
   updateUser(){
-    this._store.dispatch(new GetUser());
+    this._store.dispatch(new LoadUser());
   }
 
 }

@@ -2,9 +2,18 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-import { AuthActionsTypes, Login, LoginFailed, LoginSuccess } from '../actions/auth.action';
+import {
+  AuthActionsTypes,
+  LoadUser,
+  LoadUserFailed,
+  LoadUserSuccess,
+  Login,
+  LoginFailed,
+  LoginSuccess,
+} from '../actions/auth.action';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { UserService } from '../../services/account/user.service';
 
 @Injectable()
 export class AuthEffects {
@@ -31,9 +40,20 @@ export class AuthEffects {
     })
   );
 
+  @Effect()
+  loadUser$ = this.actions$.pipe(
+    ofType<LoadUser>(AuthActionsTypes.LoadUser),
+    exhaustMap(() => this._userService.getUser()
+      .pipe(
+        map(user => new LoadUserSuccess(user)),
+        catchError(error => of(new LoadUserFailed(error))),
+      ))
+  );
+
   constructor(
     private actions$: Actions,
     private readonly _authService: AuthService,
+    private readonly _userService: UserService,
     private readonly router: Router,
   ) {
   }

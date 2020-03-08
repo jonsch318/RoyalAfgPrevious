@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../store/state/app.state';
@@ -23,9 +23,13 @@ export class AuthService{
 
   public signin(dto: LoginDto): Observable<IUser>{
     console.log(`Sign in started with username ${dto.username} and password ${dto.password}`);
+
+
     return this._httpClient.post<IUser>("http://localhost:3000/account/signin", {
       username: dto.username,
       password: dto.password,
+    }, {
+      withCredentials: true,
     })
   }
 

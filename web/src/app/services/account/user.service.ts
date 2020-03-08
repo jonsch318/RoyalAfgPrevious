@@ -10,29 +10,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private _user: IUser;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private _store: Store<IAppState>) {
-    this._store.pipe(select(store => store.user)).subscribe(value => {
-      console.log("user: " + value.user.username)
-      this._user = value.user;
-    });
-
+    private _store: Store<IAppState>)
+  {
   }
 
   public getUser(): Observable<IUser>{
-    if(!this._user.username){
-      console.log("The username was null");
-      throw new Error("The username was null");
-    }
-    return this.getUserByUsername(this._user.username);
+    return this.httpClient.get<IUser>("http://localhost:3000/api/account/", {withCredentials: true});
   }
 
   private getUserById(id: string): Observable<IUser>{
-    return this.httpClient.get<IUser>("http://localhost:3000/api/account/byId", {});
+    return this.httpClient.get<IUser>("http://localhost:3000/api/account/byId", {withCredentials: true});
   }
 
 
