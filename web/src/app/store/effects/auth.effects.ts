@@ -9,11 +9,13 @@ import {
   LoadUserSuccess,
   Login,
   LoginFailed,
-  LoginSuccess,
+  LoginSuccess, SignOut, SignOutCancelled, SignOutConfirmed, SignOutFailed, SignOutSuccess,
 } from '../actions/auth.action';
 import { catchError, exhaustMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UserService } from '../../services/account/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SignoutDialogComponent } from '../../dialogs/signout/signout.dialog.component';
 
 @Injectable()
 export class AuthEffects {
@@ -36,7 +38,7 @@ export class AuthEffects {
     map(action => action.payload),
     tap((user) => {
       console.log("new user is: " + user);
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/").then(() => {});
     })
   );
 
@@ -50,10 +52,31 @@ export class AuthEffects {
       ))
   );
 
+  @Effect()
+  signout$ = this.actions$.pipe(
+    ofType<SignOut>(AuthActionsTypes.SignOut),
+    exhaustMap(() => this._dialogService.open(SignoutDialogComponent).afterClosed()
+      .pipe(map(confirmed => {
+        if(confirmed)
+          return new SignOutConfirmed();
+        return new SignOutCancelled();
+      })))
+  )
+
+  @Effect()
+  signoutConfirmed$ = this.actions$.pipe(
+    ofType<SignOutConfirmed>(AuthActionsTypes.SignOutConfirmed),
+    exhaustMap(auth => this._authService.signout().pipe(
+      map(() => new SignOutSuccess()),
+      catchError(error => of(new SignOutFailed(error))),
+    ))
+  );
+
   constructor(
     private actions$: Actions,
     private readonly _authService: AuthService,
     private readonly _userService: UserService,
+    private readonly _dialogService: MatDialog,
     private readonly router: Router,
   ) {
   }

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IAppState } from '../../store/state/app.state';
-import { GetUser } from '../../store/actions/user.actions';
-import { selectIsLoggedIn } from '../../store/selectors/user.selector';
-import { IUser } from '../../interfaces/user';
+import { selectIsLoggedIn, selectUser } from '../../store/selectors/user.selector';
 import { LoadUser } from '../../store/actions/auth.action';
 
 @Component({
@@ -15,7 +13,7 @@ export class NavbarComponent implements OnInit {
   signedIn = false;
   state = "";
   stateLocked = false;
-  user: IUser;
+  user = this._store.pipe(select(selectUser));
 
   constructor(
     private readonly _store: Store<IAppState>
@@ -23,10 +21,6 @@ export class NavbarComponent implements OnInit {
     this._store.select(selectIsLoggedIn).subscribe((val) => {
         console.log("The user signed in: " + val);
         this.signedIn = val;
-    })
-    this._store.subscribe(state => {
-      console.log("User changed: " + state.user.user.username);
-      this.user = state.user.user
     })
   }
 

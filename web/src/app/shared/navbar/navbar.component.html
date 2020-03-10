@@ -25,7 +25,9 @@
               <span>Sign in</span>
             </a>
           </li>
-        <li *ngIf="signedIn"><span>Is Logged in</span></li>
+        <li *ngIf="signedIn">
+          <nav-identity-menu></nav-identity-menu>
+        </li>
       </ul>
     </nav>
   </div>

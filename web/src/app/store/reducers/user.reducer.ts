@@ -23,6 +23,14 @@ export const userReducer = (
       }
     }
 
+    case AuthActionsTypes.SignOutSuccess: {
+      console.log("Signed out User successfully");
+      return {
+        ...state,
+        user: null,
+      }
+    }
+
 
     default: {
       return state

@@ -6,7 +6,8 @@ import { LoginDto } from '../../dtos/login-dto';
 import * as moment from "moment";
 import { UserService } from '../../../user/services/user/user.service';
 import { Status } from 'tslint/lib/runner';
-import { CookieOptions, Cookies, SetCookies } from '@nestjsplus/cookies';
+import { ClearCookies, CookieOptions, Cookies, SetCookies } from '@nestjsplus/cookies';
+import { JwtAuthGuard } from '../../strategies/jwt-auth.guard';
 
 @Controller('account')
 export class AuthController {
@@ -23,6 +24,7 @@ export class AuthController {
   }
 
   @SetCookies()
+  @HttpCode(200)
   @UseGuards(LocalAuthGuard)
   @Post("signin")
   async signin(@Body() dto: LoginDto, @Req() req, ){
@@ -48,5 +50,15 @@ export class AuthController {
       username: user.username,
       fullname: user.fullname,
     };
+  }
+
+  @ClearCookies("SESSIONID")
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  @Post("signout")
+  async signout(){
+    return {
+      message: "Sign out succeeded"
+    }
   }
 }

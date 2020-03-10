@@ -17,32 +17,42 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AuthEffects } from './store/effects/auth.effects';
+import { IdentityPopComponent } from './shared/navbar/pops/identity/identity.pop.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { SignoutDialogComponent } from './dialogs/signout/signout.dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    IdentityPopComponent,
+    SignoutDialogComponent
   ],
   imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        CommonModule,
-        HttpClientModule,
-        HttpClientXsrfModule.withOptions({
-            cookieName: "XSRF-TOKEN",
-            headerName: "X-CSRF-TOKEN",
-        }),
-        StoreModule.forRoot(appReducers),
-        EffectsModule.forRoot([
-          AuthEffects
-        ]),
-        StoreRouterConnectingModule.forRoot({stateKey: "router"}),
-        !environment.production ? StoreDevtoolsModule.instrument() : [],
-        UserPortalModule,
-        AppRoutingModule,
-        FontAwesomeModule,
-        MatSidenavModule,
-    ],
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-CSRF-TOKEN',
+    }),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([
+      AuthEffects,
+    ]),
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    UserPortalModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatDialogModule,
+  ],
   providers: [
     Title,
   ],
