@@ -1,6 +1,8 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "no-namespace": false,
+    "no-trailing-whitespace": false,
     "variable-name": [
       true,
       "allow-leading-underscore"

@@ -30,6 +30,10 @@
     "@ngrx/router-store": "^8.6.0",
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
+    "@ngxs/devtools-plugin": "^3.6.2",
+    "@ngxs/logger-plugin": "^3.6.2",
+    "@ngxs/router-plugin": "^3.6.2",
+    "@ngxs/store": "^3.6.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

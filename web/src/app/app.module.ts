@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { SignoutDialogComponent } from './dialogs/signout/signout.dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AccountModule } from './account/account.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatMenuModule,
     MatButtonModule,
     MatDialogModule,
+    AccountModule,
   ],
   providers: [
     Title,
