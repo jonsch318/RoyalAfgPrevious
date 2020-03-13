@@ -19,6 +19,7 @@ import { AuthStatusState } from './store/states/auth-status.state';
 import { AuthActions } from './store/actions/auth.action';
 import SignInSuccess = AuthActions.SignInSuccess;
 import { SignInPageState } from './store/states/signIn-page.state';
+import { MaterialModule } from '../material';
 
 export const COMPONENTS = [
   SignInComponent,
@@ -28,12 +29,8 @@ export const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
-    MatInputModule,
     ReactiveFormsModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatIconModule,
+    MaterialModule,
     MatDialogModule,
     AccountRoutingModule,
   ],
