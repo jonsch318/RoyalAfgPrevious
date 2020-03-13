@@ -1,29 +1,28 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { IUserState, UserState } from './user.state';
 import { AuthActions } from '../actions/auth.action';
 import SignInSuccess = AuthActions.SignInSuccess;
 import { UserActions } from '../actions/user.action';
 import GetUser = UserActions.GetUser;
 import { IUser } from '../../interfaces/user.interface';
 import SignOutSuccess = AuthActions.SignOutSuccess;
+import { Injectable } from '@angular/core';
+import SetUser = UserActions.SetUser;
+import { UserState } from './user.state';
 
 export interface IAuthStatusState {
-  user?: IUser,
   isSignedIn: boolean,
 }
 
 export const initialAuthStatusState: IAuthStatusState = {
-  user: null,
   isSignedIn: false,
 };
 
 
 @State<IAuthStatusState>({
   name: "status",
-  children: [
-    UserState
-  ]
+  defaults: initialAuthStatusState,
 })
+@Injectable()
 export class AuthStatusState {
 
   @Selector()
@@ -31,21 +30,18 @@ export class AuthStatusState {
     return state.isSignedIn;
   }
 
-  @Selector()
-  static getUser(state: IAuthStatusState){
-    return state.user;
-  }
-
-
   @Action(SignInSuccess)
   signInSuccess(ctx: StateContext<IAuthStatusState>, action: SignInSuccess){
-    ctx.dispatch(new GetUser())
+    ctx.dispatch(new GetUser());
+    ctx.patchState({
+      isSignedIn: true,
+    })
   }
 
   @Action(SignOutSuccess)
   signOutSuccess(ctx: StateContext<IAuthStatusState>, action: SignOutSuccess){
+    ctx.dispatch(new SetUser(null));
     ctx.patchState({
-      user: null,
       isSignedIn: false,
     })
   }

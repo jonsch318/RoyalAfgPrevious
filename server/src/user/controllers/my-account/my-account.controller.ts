@@ -5,7 +5,7 @@ import { JwtAuthGuard } from '../../../auth/strategies/jwt-auth.guard';
 export class MyAccountController {
 
   @UseGuards(JwtAuthGuard)
-  @Get("/")
+  @Get("/getUser")
   getProfile(@Req() req){
     Logger.debug("Sending account infos");
     const user = req.user;

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { IAppState } from '../../store/state/app.state';
-import { selectIsLoggedIn, selectUser } from '../../store/selectors/user.selector';
-import { LoadUser } from '../../store/actions/auth.action';
+import { Store } from '@ngxs/store';
+import { UserState } from '../../account/store/states/user.state';
+import { AuthStatusState } from '../../account/store/states/auth-status.state';
 
 @Component({
   selector: 'app-navbar',
@@ -13,15 +12,11 @@ export class NavbarComponent implements OnInit {
   signedIn = false;
   state = "";
   stateLocked = false;
-  user = this._store.pipe(select(selectUser));
 
   constructor(
-    private readonly _store: Store<IAppState>
+    private readonly _store: Store
   ) {
-    this._store.select(selectIsLoggedIn).subscribe((val) => {
-        console.log("The user signed in: " + val);
-        this.signedIn = val;
-    })
+    _store.select(AuthStatusState.getSignedIn).subscribe(val => this.signedIn = val);
   }
 
   ngOnInit(): void {
@@ -63,7 +58,6 @@ export class NavbarComponent implements OnInit {
   }
 
   updateUser(){
-    this._store.dispatch(new LoadUser());
   }
 
 }

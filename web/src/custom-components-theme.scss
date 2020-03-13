@@ -1,5 +1,5 @@
 @import "src/app/shared/navbar/navbar.component.theme";
-@import "app/Pages/UserPortal/login/login.component.theme";
+@import "app/account/components/signIn/signIn.component.theme";
 @import "app/app.component.theme";
 
 @mixin custom-components-theme($theme){

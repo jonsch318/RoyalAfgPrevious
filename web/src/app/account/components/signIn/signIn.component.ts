@@ -8,6 +8,8 @@ import SignIn = SignInPageActions.SignIn;
 import { UserState } from '../../store/states/user.state';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { AuthState } from '../../store/states/auth.state';
+import { AuthStatusState } from '../../store/states/auth-status.state';
 
 
 @Component({
@@ -18,7 +20,7 @@ import { map, switchMap } from 'rxjs/operators';
 export class SignInComponent implements OnInit{
   formGroup: FormGroup;
 
-  @Select(UserState.isSignedIn)
+  @Select(AuthStatusState.getSignedIn)
   isSignedIn$: Observable<boolean>;
 
   constructor(

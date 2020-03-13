@@ -9,7 +9,7 @@ import { Status } from 'tslint/lib/runner';
 import { ClearCookies, CookieOptions, Cookies, SetCookies } from '@nestjsplus/cookies';
 import { JwtAuthGuard } from '../../strategies/jwt-auth.guard';
 
-@Controller('account')
+@Controller('api/account')
 export class AuthController {
 
   constructor(

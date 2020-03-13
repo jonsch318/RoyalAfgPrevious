@@ -1,12 +1,12 @@
 <div>
 
     <button mat-button [matMenuTriggerFor]="appMenu">
-        <span>{{(user$ | async)?.username}}</span>
+        {{(user$ | async)?.username}}
     </button>
 
     <mat-menu #appMenu>
         <span mat-menu-item>Settings</span>
         <span mat-menu-item>Statistics</span>
-        <button mat-menu-item (click)="signout()">Sign out</button>
+        <button mat-menu-item (click)="signOut()">Sign out</button>
 </mat-menu>
 </div>

@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
-import { ScannedActionsSubject, Store } from '@ngrx/store';
-import { IAppState } from './store/state/app.state';
-import { AuthActionsTypes, LoadUser, LoadUserFailed } from './store/actions/auth.action';
-import { filter } from 'rxjs/operators';
-import { ofType } from '@ngrx/effects';
+import { Store } from '@ngxs/store';
+import { UserActions } from './account/store/actions/user.action';
+import GetUser = UserActions.GetUser;
 
 @Component({
   selector: 'app-root',
@@ -16,17 +14,13 @@ export class AppComponent implements OnInit{
 
   constructor(
     private readonly titleService: Title,
-    private readonly _store: Store<IAppState>,
-    private readonly _actions$: ScannedActionsSubject,
+    private readonly _store: Store
     ) {
-    this._actions$.pipe(ofType<LoadUserFailed>(AuthActionsTypes.LoadUserFailed)).subscribe(val => {
-      this.error = val.payload.massage;
-    })
   }
 
   ngOnInit(): void {
     this.titleService.setTitle("New Title heyho");
-    this._store.dispatch(new LoadUser())
+    this._store.dispatch(new GetUser());
   }
 
 
