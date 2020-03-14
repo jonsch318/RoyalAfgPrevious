@@ -1,0 +1,7 @@
+@import "./components/nav-item/nav-item.theme.component";
+
+@mixin core-theme-provider($theme)
+{
+  @include core-nav-item-component-theme($theme);
+
+}

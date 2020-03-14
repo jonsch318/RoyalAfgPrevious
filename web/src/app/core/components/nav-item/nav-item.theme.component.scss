@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+
+@mixin core-nav-item-component-theme($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .hint{
+    color: mat-color($accent, main);
+  }
+}

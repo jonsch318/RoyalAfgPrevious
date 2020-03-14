@@ -1,0 +1,21 @@
+<core-layout>
+    <core-sidenav [open]="sidenavOpen$ | async">
+        <mat-list-item (click)="closeSidenav()">
+            <mat-icon mat-list-icon>close</mat-icon>
+            <h1 mat-line>Close</h1>
+        </mat-list-item>
+        <core-nav-item (navigate)="closeSidenav()" routerLink="/signin" icon="account_circle">Sign in</core-nav-item>
+        <mat-list-item [matMenuTriggerFor]="theme">
+            <mat-icon mat-list-icon>color_lens</mat-icon>
+            <h1 mat-line>Theme</h1>
+            <mat-menu #theme>
+                <button mat-menu-item (click)="changeTheme('light')">Light</button>
+                <button mat-menu-item (click)="changeTheme('dark')">Dark</button>
+            </mat-menu>
+        </mat-list-item>
+    </core-sidenav>
+    <core-toolbar (openMenu)="openSidenav()">
+
+    </core-toolbar>
+    <router-outlet></router-outlet>
+</core-layout>
