@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { WalletSchemaName } from '../../models/wallet-schema';
 import { Wallet } from '../../interfaces/wallet.interface';
 import { Model } from 'mongoose';
-import { User } from '../../../user/interfaces/user';
+import { IUser } from '../../../user/interfaces/user';
 import { WalletService } from '../wallet/wallet.service';
 
 import {Decimal} from 'decimal.js';
@@ -19,7 +19,7 @@ export class PurchaseService {
 
   }
 
-  async purchase(user: User, amount: number): Promise<any> {
+  async purchase(user: IUser, amount: number): Promise<any> {
     // Round to top for example 5.10 gets to 6, because we represent the balance 10 as 10 cents and not 10 euros. We take the absolute Value (abs) to get only positive numbers.
     const decimal = new Decimal(amount).ceil().abs();
     const wallet = await this.walletService.findOne(user);
@@ -36,7 +36,7 @@ export class PurchaseService {
     return wallet;
   }
 
-  async deposit(user: User, amount: number): Promise<Wallet>{
+  async deposit(user: IUser, amount: number): Promise<Wallet>{
 
     // Round to top for example 5.10 gets to 6, because we represent the balance 10 as 10 cents and not 10 euros. We take the absolute Value (abs) to get only positive numbers.
     const decimal = new Decimal(amount).ceil().abs();

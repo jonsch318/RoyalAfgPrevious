@@ -1,9 +1,9 @@
-import { User } from '../../user/interfaces/user';
+import { IUser } from '../../user/interfaces/user';
 import {Document} from 'mongoose';
 import Decimal from 'decimal.js';
 
 export interface Wallet extends Document{
-  user: User,
+  user: IUser,
   balance: Decimal,
   balanceNumber: number,
 }

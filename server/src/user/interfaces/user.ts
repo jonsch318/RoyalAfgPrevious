@@ -1,7 +1,7 @@
 import {Document} from "mongoose";
 import * as bcrypt from "bcryptjs"
 
-export interface User extends Document{
+export interface IUser extends Document{
   id: string,
   fullname: string,
   username: string,
