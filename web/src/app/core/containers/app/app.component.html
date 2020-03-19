@@ -14,8 +14,13 @@
             </mat-menu>
         </mat-list-item>
     </core-sidenav>
-    <core-toolbar (openMenu)="openSidenav()">
-
+    <core-toolbar (openMenu)="openSidenav()" class="nav-cont">
+        <div class="nav-l">
+            <button mat-button matTooltip="Show all Games">Games</button>
+        </div>
+        <div class="nav-r">
+            <nav-account-menu></nav-account-menu>
+        </div>
     </core-toolbar>
     <router-outlet></router-outlet>
 </core-layout>

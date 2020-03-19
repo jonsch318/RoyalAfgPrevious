@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@golevelup/nestjs-testing": "^0.1.2",
     "@nest-middlewares/cookie-parser": "^6.0.0",
     "@nest-middlewares/cors": "^6.0.1",
     "@nestjs/common": "^7.0.2",
@@ -29,6 +30,7 @@
     "@nestjs/mongoose": "^6.3.1",
     "@nestjs/passport": "^7.0.0",
     "@nestjs/platform-express": "^7.0.2",
+    "@nestjs/serve-static": "^2.1.0",
     "@nestjsplus/cookies": "^1.0.4",
     "acorn": "^7.1.1",
     "bcryptjs": "^2.4.3",

@@ -12,6 +12,7 @@ import GetUserSuccess = UserActions.GetUserSuccess;
 import GetUserFailed = UserActions.GetUserFailed;
 import { of } from 'rxjs';
 import SetUser = UserActions.SetUser;
+import SignInVerified = AuthActions.SignInVerified;
 
 export interface IUserState {
   user?: IUser,
@@ -50,6 +51,7 @@ export class UserState {
 
   @Action(GetUserSuccess)
   getUserSuccess(ctx: StateContext<IUserState>, action: GetUserSuccess){
+    ctx.dispatch(new SignInVerified());
     return ctx.patchState({
       user: action.user,
     });

@@ -1,8 +1,8 @@
-import { IUser } from '../../user/interfaces/user';
-import {Document} from 'mongoose';
+import { IUser } from '../../user/interfaces/user.interface';
 import Decimal from 'decimal.js';
 
-export interface Wallet extends Document{
+export interface IWallet{
+  id: string,
   user: IUser,
   balance: Decimal,
   balanceNumber: number,

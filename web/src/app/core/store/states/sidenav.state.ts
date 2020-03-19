@@ -3,6 +3,7 @@ import { SidenavActions } from '../actions/sidenav.action';
 import OpenSidenav = SidenavActions.OpenSidenav;
 import CloseSidenav = SidenavActions.CloseSidenav;
 import ToggleSidenav = SidenavActions.ToggleSidenav;
+import { Injectable } from '@angular/core';
 
 export interface ISidenavState {
   open: boolean,
@@ -16,6 +17,7 @@ export const initialSideNavState: ISidenavState = {
   name: "sidenav",
   defaults: initialSideNavState,
 })
+@Injectable()
 export class SidenavState {
   @Selector()
   static getOpen(state: ISidenavState){

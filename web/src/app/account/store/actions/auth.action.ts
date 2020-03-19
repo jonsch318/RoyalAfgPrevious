@@ -32,4 +32,9 @@ export namespace AuthActions {
     constructor(public error: any) {
     }
   }
+
+  export class SignInVerified {
+    static readonly type = "[Auth API] SignInVerified";
+  }
+
 }

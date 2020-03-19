@@ -33,7 +33,7 @@ import { ThemeService } from './core/services/theme.service';
       ], {
         developmentMode: !environment.production,
       }),
-    NgxsLoggerPluginModule.forRoot(),
+    //NgxsLoggerPluginModule.forRoot(),
     MatDialogModule,
     AppRoutingModule,
     AccountModule.forRoot(),

@@ -57,6 +57,7 @@ export class AuthController {
   @HttpCode(200)
   @Post("signout")
   async signout(){
+    Logger.log("Sign out Succeeded");
     return {
       message: "Sign out succeeded"
     }

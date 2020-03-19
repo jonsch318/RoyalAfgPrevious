@@ -44,6 +44,7 @@ export class AuthService {
    * @returns The observable of the process.
    */
   public signOut(): Observable<any> {
+    console.log("Signing out user...");
     return this._httpClient.post(`${accountUrl}/signout`,{},{
       withCredentials: true,
     });

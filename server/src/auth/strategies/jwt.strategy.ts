@@ -2,8 +2,8 @@ import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { jwtConstants } from '../constants/jwt.constants';
-import { IUser } from '../../user/interfaces/user';
 import { UserService } from '../../user/services/user/user.service';
+import { IUserDoc } from '../../user/interfaces/user-doc.interface';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy){
@@ -24,7 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy){
     });
   }
 
-  async validate(payload: any): Promise<IUser>{
+  async validate(payload: any): Promise<IUserDoc>{
     Logger.log(`Jwt Strategy validate called with sub ${payload}`);
     const user = await this._userService.findById(payload.sub);
     if(!user) throw new UnauthorizedException(`The user with the given id ${payload.sub} was not found`);
