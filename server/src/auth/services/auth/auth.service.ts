@@ -1,21 +1,21 @@
 import {Model} from "mongoose";
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from '../../../user/interfaces/user';
 import { RegisterDto } from '../../dtos/register-dto';
 import {JwtService} from "@nestjs/jwt";
 import { WalletService } from '../../../wallet/services/wallet/wallet.service';
+import { IUserDoc } from '../../../user/interfaces/user-doc.interface';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly walletService: WalletService,
-    @InjectModel("User") private readonly _userModel: Model<User>,
+    @InjectModel("User") private readonly _userModel: Model<IUserDoc>,
   ) {
   }
 
-  async register(dto: RegisterDto): Promise<User>{
+  async register(dto: RegisterDto): Promise<IUserDoc>{
     const user = new this._userModel(dto);
     await user.setPassword(dto.password);
     await user.save();
@@ -26,7 +26,7 @@ export class AuthService {
     return user;
   }
 
-  async validateUser(username: string, password: string): Promise<User>{
+  async validateUser(username: string, password: string): Promise<IUserDoc>{
     const user = await this._userModel.findOne({username: username});
     if(!user) throw new UnauthorizedException("A user with the given username and password was not found.");
     if(!await user.validatePassword(password)){
@@ -41,7 +41,7 @@ export class AuthService {
    * @param user The user for which the jwt token is generated
    * @returns The users jwt token.
    */
-  async signin(user: User): Promise<any> {
+  async signin(user: IUserDoc): Promise<any> {
     const payload = {
       username: user.username,
     };

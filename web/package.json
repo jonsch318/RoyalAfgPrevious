@@ -13,13 +13,13 @@
   "dependencies": {
     "@angular-devkit/build-angular": "^0.900.6",
     "@angular/animations": "~9.0.6",
-    "@angular/cdk": "^9.1.2",
+    "@angular/cdk": "^9.1.3",
     "@angular/common": "~9.0.6",
     "@angular/compiler": "~9.0.6",
     "@angular/core": "~9.0.6",
     "@angular/forms": "~9.0.6",
     "@angular/localize": "^9.0.6",
-    "@angular/material": "^9.1.2",
+    "@angular/material": "^9.1.3",
     "@angular/platform-browser": "~9.0.6",
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
@@ -30,8 +30,10 @@
     "@ngxs/logger-plugin": "^3.6.2",
     "@ngxs/router-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
+    "minimist": "^1.2.5",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "tslint": "^5.20.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -51,7 +53,6 @@
     "karma-jasmine-html-reporter": "^1.5.2",
     "protractor": "^5.4.3",
     "ts-node": "^8.6.2",
-    "tslint": "^6.1.0",
-    "typescript": "~3.8.3"
+    "typescript": "3.7.5"
   }
 }

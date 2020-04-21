@@ -20,6 +20,8 @@ import { AuthActions } from './store/actions/auth.action';
 import SignInSuccess = AuthActions.SignInSuccess;
 import { SignInPageState } from './store/states/signIn-page.state';
 import { MaterialModule } from '../material';
+import SignOutSuccess = AuthActions.SignOutSuccess;
+import { SignOutState } from './store/states/signOut.state';
 
 export const COMPONENTS = [
   SignInComponent,
@@ -57,6 +59,7 @@ export class AccountModule {
       UserState,
       AuthStatusState,
       SignInPageState,
+      SignOutState,
     ])
   ]
 })

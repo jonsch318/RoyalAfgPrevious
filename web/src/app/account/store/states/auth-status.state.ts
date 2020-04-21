@@ -1,13 +1,13 @@
+import { Injectable, NgZone } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Router } from '@angular/router';
 import { AuthActions } from '../actions/auth.action';
 import SignInSuccess = AuthActions.SignInSuccess;
 import { UserActions } from '../actions/user.action';
 import GetUser = UserActions.GetUser;
-import { IUser } from '../../interfaces/user.interface';
+import SignInVerified = AuthActions.SignInVerified;
 import SignOutSuccess = AuthActions.SignOutSuccess;
-import { Injectable } from '@angular/core';
-import SetUser = UserActions.SetUser;
-import { UserState } from './user.state';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface IAuthStatusState {
   isSignedIn: boolean,
@@ -30,22 +30,49 @@ export class AuthStatusState {
     return state.isSignedIn;
   }
 
+  constructor(
+    private readonly _routerService: Router,
+    private readonly _ngZone: NgZone,
+    private readonly _snackBarService: MatSnackBar,
+  ) {
+  }
+
   @Action(SignInSuccess)
-  signInSuccess(ctx: StateContext<IAuthStatusState>, action: SignInSuccess){
-    ctx.dispatch(new GetUser());
+  signInSuccess(ctx: StateContext<IAuthStatusState>, action: SignInSuccess) {
+    this._snackBarService.open("You signed in successfully!", "Ok", {
+      duration: 1000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+    });
+    return ctx.dispatch(new GetUser());
+  }
+
+  @Action(SignInVerified)
+  async signInVerified(ctx: StateContext<IAuthStatusState>, action: SignInVerified) {
     ctx.patchState({
       isSignedIn: true,
-    })
+    });
+    await this._ngZone.run(async () => {
+      await this._routerService.navigateByUrl("/");
+    });
   }
 
   @Action(SignOutSuccess)
-  signOutSuccess(ctx: StateContext<IAuthStatusState>, action: SignOutSuccess){
-    ctx.dispatch(new SetUser(null));
+  async signOutSuccess(ctx: StateContext<IAuthStatusState>, action: SignOutSuccess) {
+    ctx.dispatch(new GetUser());
     ctx.patchState({
       isSignedIn: false,
-    })
+    });
+
+    this._snackBarService.open("You signed out successfully!", "Ok", {
+      duration: 1000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+    });
+
+    await this._ngZone.run(async () => {
+      await this._routerService.navigateByUrl("/");
+    });
   }
-
-
 
 }

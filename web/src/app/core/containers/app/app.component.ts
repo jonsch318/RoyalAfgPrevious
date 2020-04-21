@@ -6,6 +6,11 @@ import CloseSidenav = SidenavActions.CloseSidenav;
 import OpenSidenav = SidenavActions.OpenSidenav;
 import SetTheme = ThemeActions.SetTheme;
 import { Themes } from '../../services/theme.service';
+import { AuthActions } from '../../../account/store/actions/auth.action';
+import { UserActions } from '../../../account/store/actions/user.action';
+import GetUser = UserActions.GetUser;
+import { SelectControlValueAccessor } from '@angular/forms';
+import { AuthStatusState } from '../../../account/store/states/auth-status.state';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +23,8 @@ export class AppComponent implements OnInit {
   @Select(SidenavState.getOpen)
   sidenavOpen$: Observable<boolean>;
 
-
+  @Select(AuthStatusState.getSignedIn)
+  isSignedIn$: Observable<boolean>;
 
   constructor(
     private readonly _store: Store,
@@ -26,6 +32,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this._store.dispatch(new SetTheme(Themes.light));
+    this._store.dispatch(new GetUser());
   }
 
   closeSidenav(){

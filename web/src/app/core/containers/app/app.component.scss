@@ -1,0 +1,20 @@
+.nav-cont{
+  font-size: 22px;
+
+  .nav-l{
+    margin-right: auto;
+    margin-left: 0;
+    display: flex;
+
+    button{
+      font-size: 18px;
+    }
+  }
+
+  .nav-r{
+    margin-right: 0;
+    margin-left: auto;
+    display: flex;
+  }
+
+}

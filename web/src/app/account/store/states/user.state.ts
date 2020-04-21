@@ -1,17 +1,17 @@
+import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { AuthActions } from '../actions/auth.action';
-import SignInSuccess = AuthActions.SignInSuccess;
+import { IUser } from '../../interfaces/user.interface';
+import { UserService } from '../../services/user.service';
 import { UserActions } from '../actions/user.action';
 import GetUser = UserActions.GetUser;
-import { IUser } from '../../interfaces/user.interface';
-import SignOutSuccess = AuthActions.SignOutSuccess;
-import { UserService } from '../../services/user.service';
-import { Injectable } from '@angular/core';
-import { catchError, map } from 'rxjs/operators';
 import GetUserSuccess = UserActions.GetUserSuccess;
-import GetUserFailed = UserActions.GetUserFailed;
+import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import GetUserFailed = UserActions.GetUserFailed;
+import { AuthActions } from '../actions/auth.action';
+import SignInVerified = AuthActions.SignInVerified;
 import SetUser = UserActions.SetUser;
+
 
 export interface IUserState {
   user?: IUser,
@@ -50,6 +50,7 @@ export class UserState {
 
   @Action(GetUserSuccess)
   getUserSuccess(ctx: StateContext<IUserState>, action: GetUserSuccess){
+    ctx.dispatch(new SignInVerified());
     return ctx.patchState({
       user: action.user,
     });

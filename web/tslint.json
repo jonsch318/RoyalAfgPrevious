@@ -1,6 +1,9 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "curly": false,
+    "one-line": false,
+    "whitespace": false,
     "no-namespace": false,
     "no-trailing-whitespace": false,
     "variable-name": [

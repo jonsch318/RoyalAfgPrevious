@@ -1,9 +1,8 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Injectable } from '@angular/core';
+import { UserState } from './user.state';
+import { State } from '@ngxs/store';
 import { SignInPageState } from './signIn-page.state';
 import { AuthStatusState } from './auth-status.state';
-import { IUserState, UserState } from './user.state';
-import { IUser } from '../../interfaces/user.interface';
-import { Injectable } from '@angular/core';
 
 
 @State({
