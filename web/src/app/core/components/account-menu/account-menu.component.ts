@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatMenu } from '@angular/material/menu';
 import { Select, Store } from '@ngxs/store';
-import { AuthActions } from '../../../account/store/actions/auth.action';
-import SignOut = AuthActions.SignOut;
 import { Observable } from 'rxjs';
 import { AuthStatusState } from '../../../account/store/states/auth-status.state';
+import { SignOutActions } from '../../../account/store/actions/signOut.action';
+import SignOut = SignOutActions.SignOut;
 
 @Component({
   selector: 'nav-account-menu',

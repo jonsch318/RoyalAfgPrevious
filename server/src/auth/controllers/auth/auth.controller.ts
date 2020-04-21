@@ -46,9 +46,12 @@ export class AuthController {
     const user = await this._userService.findOne(dto.username);
     Logger.debug("Created JWT and Cookie");
     return {
-      id: user.id,
-      username: user.username,
-      fullname: user.fullname,
+      error: "",
+      data: {
+        id: user.id,
+        username: user.username,
+        fullname: user.fullname,
+      },
     };
   }
 
@@ -57,7 +60,7 @@ export class AuthController {
   @HttpCode(200)
   @Post("signout")
   async signout(){
-    Logger.log("Sign out Succeeded");
+    Logger.warn("Sign out Succeeded");
     return {
       message: "Sign out succeeded"
     }

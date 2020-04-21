@@ -15,6 +15,7 @@ import { AppComponent } from './core/containers/app/app.component';
 import { MaterialModule } from './material';
 import { appStates } from './core/store';
 import { ThemeService } from './core/services/theme.service';
+import { GamesModule } from './games/games.module';
 
 // @ts-ignore
 @NgModule({
@@ -37,6 +38,7 @@ import { ThemeService } from './core/services/theme.service';
     MatDialogModule,
     AppRoutingModule,
     AccountModule.forRoot(),
+    GamesModule
   ],
   providers: [
     Title,

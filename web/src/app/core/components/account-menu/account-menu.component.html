@@ -7,12 +7,12 @@
     <mat-menu #accountMenu>
         <button mat-menu-item>Your Profile</button>
         <button mat-menu-item>Your Statistics</button>
-        <button mat-menu-item (click)="signOut()">Sign out</button>
+        <button mat-menu-item matTooltip="This signes you out of this Account." matTooltip (click)="signOut()">Sign out</button>
     </mat-menu>
 
 
 </div>
 <div class="auth-ctrl" *ngIf="!(isSignedIn | async)">
     <button mat-raised-button>Register</button>
-    <button mat-button routerLink="/signin">Sign in</button>
+    <button mat-button routerLink="/signin" matTooltip="Sign in to your existing Account">Sign in</button>
 </div>

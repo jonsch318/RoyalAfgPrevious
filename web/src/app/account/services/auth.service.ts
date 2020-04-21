@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { IUser } from '../interfaces/user.interface';
 import { SignInDto } from '../models/signInDto';
 import { RegisterDto } from '../models/register.dto';
+import { ancestorWhere } from 'tslint';
+import { IBaseApiDto } from '../../core/Dtos/baseApi.dto';
 
 
 export const accountUrl = "http://localhost:3000/api/account";
@@ -22,10 +24,10 @@ export class AuthService {
    * @param dto The credentials used to sign in the user.
    * @returns The observable of the process.
    */
-  public signIn(dto: SignInDto): Observable<any>{
-    return this._httpClient.post<any>(`${accountUrl}/signin`, dto, {
+  public signIn(dto: SignInDto): Observable<any> {
+    return this._httpClient.post<IBaseApiDto>(`${accountUrl}/signin`, dto, {
       withCredentials: true,
-    })
+    });
   }
 
   /**
@@ -43,11 +45,12 @@ export class AuthService {
    * Posts a request to the server which will sign out the user.
    * @returns The observable of the process.
    */
-  public signOut(): Observable<any> {
+  public async signOut(){
     console.log("Signing out user...");
-    return this._httpClient.post(`${accountUrl}/signout`,{},{
+    return await this._httpClient.post<{
+      message: string,
+    }>(`${accountUrl}/signout`,{},{
       withCredentials: true,
-    });
+    }).toPromise();
   }
-
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IdentityComponent } from './identity.component';
+import { SelectGridItemComponent } from './select-grid-item.component';
 
-describe('IdentityComponent', () => {
-  let component: IdentityComponent;
-  let fixture: ComponentFixture<IdentityComponent>;
+describe('SelectGridItemComponent', () => {
+  let component: SelectGridItemComponent;
+  let fixture: ComponentFixture<SelectGridItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IdentityComponent ]
+      declarations: [ SelectGridItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IdentityComponent);
+    fixture = TestBed.createComponent(SelectGridItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -26,7 +26,6 @@ import { SignOutState } from './store/states/signOut.state';
 export const COMPONENTS = [
   SignInComponent,
   SignoutDialogComponent,
-
 ];
 
 @NgModule({

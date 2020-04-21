@@ -4,7 +4,6 @@
             <mat-icon mat-list-icon>close</mat-icon>
             <h1 mat-line>Close</h1>
         </mat-list-item>
-        <core-nav-item (navigate)="closeSidenav()" routerLink="/signin" icon="account_circle">Sign in</core-nav-item>
         <mat-list-item [matMenuTriggerFor]="theme">
             <mat-icon mat-list-icon>color_lens</mat-icon>
             <h1 mat-line>Theme</h1>
@@ -16,7 +15,7 @@
     </core-sidenav>
     <core-toolbar (openMenu)="openSidenav()" class="nav-cont">
         <div class="nav-l">
-            <button mat-button matTooltip="Show all Games">Games</button>
+            <button mat-button matTooltip="Show all Games" matTooltipPosition="after" routerLink="/games/select">Games</button>
         </div>
         <div class="nav-r">
             <nav-account-menu></nav-account-menu>

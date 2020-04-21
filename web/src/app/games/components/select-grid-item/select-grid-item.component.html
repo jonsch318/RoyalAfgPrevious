@@ -1,0 +1,16 @@
+<div class="tile-container" (mouseenter)="hover()" (mouseleave)="hoverRemoved()">
+    <div class="tile-main" [ngStyle]="
+    {
+        'background-image': getUrl(),
+        'background-position': _imagePos
+    }">
+    </div>
+    <div class="tile-footer">
+        <span>
+        {{_caption}}
+    </span>
+    <span *ngIf="_hover">
+        <button mat-raised-button color="primary" (click)="play()">Play</button>
+    </span>
+    </div>
+</div>

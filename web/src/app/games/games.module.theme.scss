@@ -1,0 +1,8 @@
+@import "./containers/select/select.component.theme";
+@import "./components/select-grid-item/select-grid-item.component.theme";
+
+@mixin games-module-themes($theme){
+  @include select-games-component($theme);
+  @include select-grid-item-component($theme);
+
+}

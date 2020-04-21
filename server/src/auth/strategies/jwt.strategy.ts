@@ -14,7 +14,6 @@ export class JwtStrategy extends PassportStrategy(Strategy){
       jwtFromRequest: ExtractJwt.fromExtractors([(req) => {
         let token = null;
         if(req && req.cookies){
-          Logger.log("Cookies: " + req.cookies["SESSIONID"]);
           token = req.cookies["SESSIONID"];
         }
         return token;
@@ -25,7 +24,6 @@ export class JwtStrategy extends PassportStrategy(Strategy){
   }
 
   async validate(payload: any): Promise<IUserDoc>{
-    Logger.log(`Jwt Strategy validate called with sub ${payload}`);
     const user = await this._userService.findById(payload.sub);
     if(!user) throw new UnauthorizedException(`The user with the given id ${payload.sub} was not found`);
     return user;

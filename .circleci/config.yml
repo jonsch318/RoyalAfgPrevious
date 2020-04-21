@@ -13,9 +13,6 @@ jobs:
 
     steps:
       - checkout
-
-      - cmd: cd server,
-
       - restore_cache:
         keys:
           - v1-dependencies-{{ checksum "package.json" }}

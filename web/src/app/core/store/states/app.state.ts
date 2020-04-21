@@ -1,9 +1,9 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SidenavState } from './sidenav.state';
-import { ThemeActions } from '../actions/theme.action';
-import SetTheme = ThemeActions.SetTheme;
 import { ThemeService } from '../../services/theme.service';
 import { Injectable } from '@angular/core';
+import { ThemeActions } from '../actions/theme.action';
+import SetTheme = ThemeActions.SetTheme;
 
 export interface IAppState{
   theme: string,

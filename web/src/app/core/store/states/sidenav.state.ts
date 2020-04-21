@@ -1,9 +1,9 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Injectable } from '@angular/core';
 import { SidenavActions } from '../actions/sidenav.action';
 import OpenSidenav = SidenavActions.OpenSidenav;
 import CloseSidenav = SidenavActions.CloseSidenav;
 import ToggleSidenav = SidenavActions.ToggleSidenav;
-import { Injectable } from '@angular/core';
 
 export interface ISidenavState {
   open: boolean,
@@ -20,7 +20,7 @@ export const initialSideNavState: ISidenavState = {
 @Injectable()
 export class SidenavState {
   @Selector()
-  static getOpen(state: ISidenavState){
+  static getOpen(state: ISidenavState) {
     return state.open;
   }
 
