@@ -16,6 +16,7 @@ import { MaterialModule } from './material';
 import { appStates } from './core/store';
 import { ThemeService } from './core/services/theme.service';
 import { GamesModule } from './games/games.module';
+import { StaticModule } from './static/static.module';
 
 // @ts-ignore
 @NgModule({
@@ -34,11 +35,11 @@ import { GamesModule } from './games/games.module';
       ], {
         developmentMode: !environment.production,
       }),
-    //NgxsLoggerPluginModule.forRoot(),
     MatDialogModule,
     AppRoutingModule,
     AccountModule.forRoot(),
-    GamesModule
+    GamesModule,
+    StaticModule,
   ],
   providers: [
     Title,

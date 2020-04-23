@@ -1,25 +1,5 @@
 <core-layout>
-    <core-sidenav [open]="sidenavOpen$ | async">
-        <mat-list-item (click)="closeSidenav()">
-            <mat-icon mat-list-icon>close</mat-icon>
-            <h1 mat-line>Close</h1>
-        </mat-list-item>
-        <mat-list-item [matMenuTriggerFor]="theme">
-            <mat-icon mat-list-icon>color_lens</mat-icon>
-            <h1 mat-line>Theme</h1>
-            <mat-menu #theme>
-                <button mat-menu-item (click)="changeTheme('light')">Light</button>
-                <button mat-menu-item (click)="changeTheme('dark')">Dark</button>
-            </mat-menu>
-        </mat-list-item>
-    </core-sidenav>
-    <core-toolbar (openMenu)="openSidenav()" class="nav-cont">
-        <div class="nav-l">
-            <button mat-button matTooltip="Show all Games" matTooltipPosition="after" routerLink="/games/select">Games</button>
-        </div>
-        <div class="nav-r">
-            <nav-account-menu></nav-account-menu>
-        </div>
-    </core-toolbar>
+    <core-sidenav-filled></core-sidenav-filled>
+    <core-toolbar-filled></core-toolbar-filled>
     <router-outlet></router-outlet>
 </core-layout>

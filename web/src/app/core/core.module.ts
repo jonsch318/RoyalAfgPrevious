@@ -11,6 +11,8 @@ import { AppComponent } from './containers/app/app.component';
 import { ThemeService } from './services/theme.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AccountMenuComponent } from './components/account-menu/account-menu.component';
+import { SidenavFilledComponent } from './components/sidenav-filled/sidenav-filled.component';
+import { ToolbarFilledComponent } from './components/toolbar-filled/toolbar-filled.component';
 
 export const COMPONENTS = [
   NavItemComponent,
@@ -19,6 +21,8 @@ export const COMPONENTS = [
   LayoutComponent,
   AccountMenuComponent,
   AppComponent,
+  SidenavFilledComponent,
+  ToolbarFilledComponent,
 ];
 
 @NgModule({

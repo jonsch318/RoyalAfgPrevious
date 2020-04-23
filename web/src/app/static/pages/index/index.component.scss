@@ -1,0 +1,56 @@
+@media only screen and (max-width: 1000px) {
+  .mask{
+    background: none !important;
+  }
+  .bg{
+    background-size: cover !important;
+    background-position: left !important;
+  }
+  .content h2{
+    color: white !important;
+  }
+}
+
+
+.landing{
+  height: 450px;
+  width: 100%;
+  $landing-color: #FFD800;
+  $landing-height: 450px;
+
+  .bg{
+    background-image: url("src/assets/index_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: calc(100% - 350px);
+    height: $landing-height;
+    width: 100%;
+    position: absolute;
+    z-index: -3;
+    background-position: right;
+  }
+  .mask{
+    background-image: url("src/assets/index_bg_mask.svg");
+    background-repeat: no-repeat;
+    height: $landing-height;
+    width: 100%;
+    position: absolute;
+    z-index: -2;
+  }
+  .content{
+    padding: 50px 0 0 50px;
+
+    h1{
+      font-family: "Roboto", "Source Sans Pro", sans-serif;
+      font-weight: 600;
+      font-size: 3rem;
+      color: $landing-color;
+    }
+    h2{
+      margin: 20px 0 0 0;
+    }
+    .btn{
+      background: $landing-color;
+      margin: 150px 0 0 0;
+    }
+  }
+}

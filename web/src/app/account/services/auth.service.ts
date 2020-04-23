@@ -8,7 +8,7 @@ import { ancestorWhere } from 'tslint';
 import { IBaseApiDto } from '../../core/Dtos/baseApi.dto';
 
 
-export const accountUrl = "http://localhost:3000/api/account";
+export const accountUrl = "http://localhost:2000/api/account";
 
 /**
  * Provides functionality of the authentication actions.
@@ -25,9 +25,7 @@ export class AuthService {
    * @returns The observable of the process.
    */
   public signIn(dto: SignInDto): Observable<any> {
-    return this._httpClient.post<IBaseApiDto>(`${accountUrl}/signin`, dto, {
-      withCredentials: true,
-    });
+    return this._httpClient.post<IBaseApiDto>(`${accountUrl}/signin`, dto, );
   }
 
   /**
@@ -36,9 +34,7 @@ export class AuthService {
    * @returns The observable of the created user
    */
   public register(dto: RegisterDto): Observable<IUser> {
-    return this._httpClient.post<IUser>(`${accountUrl}/register`, dto, {
-      withCredentials: true
-    });
+    return this._httpClient.post<IUser>(`${accountUrl}/register`, dto, );
   }
 
   /**
@@ -49,8 +45,6 @@ export class AuthService {
     console.log("Signing out user...");
     return await this._httpClient.post<{
       message: string,
-    }>(`${accountUrl}/signout`,{},{
-      withCredentials: true,
-    }).toPromise();
+    }>(`${accountUrl}/signout`,{}).toPromise();
   }
 }

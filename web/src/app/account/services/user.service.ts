@@ -11,7 +11,7 @@ export class UserService {
   }
 
   getUser(): Observable<IUser>{
-    return this._httpClient.get<IUser>(`${accountUrl}/getUser`,  {withCredentials: true})
+    return this._httpClient.get<IUser>(`${accountUrl}/getUser`);
   }
 
 }
