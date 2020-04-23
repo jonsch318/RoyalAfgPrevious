@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "AngularApp": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "de-DE": "locale/messages.de.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -60,6 +66,13 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "de": {
+              "aot": true,
+              "outputPath": "dist/RoyalAfg-de/",
+              "i18nFile": "locale/messages.de.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "de"
             }
           }
         },
@@ -71,6 +84,9 @@
           "configurations": {
             "production": {
               "browserTarget": "AngularApp:build:production"
+            },
+            "de": {
+              "browserTarget": "AngularApp:build:de"
             }
           }
         },

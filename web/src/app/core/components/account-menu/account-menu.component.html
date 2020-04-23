@@ -1,18 +1,18 @@
 <div class="account-ctrl" *ngIf="isSignedIn | async">
 
-    <button class="trigger" mat-icon-button matTooltip="My Account" matTooltipShowDelay="0" [matMenuTriggerFor]="accountMenu">
+    <button class="trigger" mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="accountMenu">
         <mat-icon>account_circle</mat-icon>
     </button>
 
     <mat-menu #accountMenu>
         <button mat-menu-item>Your Profile</button>
         <button mat-menu-item>Your Statistics</button>
-        <button mat-menu-item matTooltip="This signes you out of this Account." matTooltip (click)="signOut()">Sign out</button>
+        <button mat-menu-item matTooltip="This signes you out of the current account." (click)="signOut()">Sign out</button>
     </mat-menu>
 
 
 </div>
 <div class="auth-ctrl" *ngIf="!(isSignedIn | async)">
-    <button mat-raised-button>Register</button>
+    <button mat-raised-button matTooltip="Register a new account and start playing">Register</button>
     <button mat-button routerLink="/signin" matTooltip="Sign in to your existing Account">Sign in</button>
 </div>

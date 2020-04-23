@@ -20,8 +20,7 @@ import { AuthStatusState } from '../../../account/store/states/auth-status.state
 })
 export class AppComponent implements OnInit {
 
-  @Select(SidenavState.getOpen)
-  sidenavOpen$: Observable<boolean>;
+
 
   @Select(AuthStatusState.getSignedIn)
   isSignedIn$: Observable<boolean>;
@@ -35,16 +34,8 @@ export class AppComponent implements OnInit {
     this._store.dispatch(new GetUser());
   }
 
-  closeSidenav(){
-    this._store.dispatch(new CloseSidenav());
-  }
 
-  openSidenav(){
-    this._store.dispatch(new OpenSidenav());
-  }
 
-  changeTheme(theme: string){
-    this._store.dispatch(new SetTheme(theme));
-  }
-
+  closeSidenav(){this._store.dispatch(new CloseSidenav());}
+  openSidenav(){this._store.dispatch(new OpenSidenav());}
 }

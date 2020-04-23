@@ -1,0 +1,11 @@
+<core-toolbar (openMenu)="openSidenav()" class="nav-cont">
+    <div class="nav-l">
+        <button mat-icon-button matTooltip="Home" routerLink="/">
+            <mat-icon matTooltip="Homepage" i18n-matTooltip="Tooltip for Home Menu Button@@">home</mat-icon>
+        </button>
+        <button mat-button matTooltip="Show all Games" routerLink="/games/select" i18n-matTooltip="Tooltip for Games Menu Button@@" i18n="Games Menu Button|Forwardes users to the select game page@@">Games</button>
+    </div>
+    <div class="nav-r">
+        <nav-account-menu></nav-account-menu>
+    </div>
+</core-toolbar>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1cb86e649ad2e5cfc86efb2d28c06b1d959f8aa6" datatype="html">
+        <source>Homepage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/toolbar-filled/toolbar-filled.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for Home Menu Button</note>
+      </trans-unit>
+      <trans-unit id="72603771c1d69243e543fa9b1c3e047fdea60462" datatype="html">
+        <source>Games</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/toolbar-filled/toolbar-filled.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Forwardes users to the select game page</note>
+        <note priority="1" from="meaning">Games Menu Button</note>
+      </trans-unit>
+      <trans-unit id="bade02f31542750cde32f71333afbc48c5c58269" datatype="html">
+        <source>Show all Games</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/toolbar-filled/toolbar-filled.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Tooltip for Games Menu Button</note>
+      </trans-unit>
+      <trans-unit id="ef2e3fc896c290601e1c7bedb559865d9b8a9221" datatype="html">
+        <source>RoyalAfg</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/static/pages/index/index.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55101f6340f743a06f3f5afd8e59b0e4ac328b42" datatype="html">
+        <source>Play now or you&apos;ll regret it!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/static/pages/index/index.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ed696349416fd10bb73bd179d03bd036f80f94d9" datatype="html">
+        <source>Play now</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/static/pages/index/index.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

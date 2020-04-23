@@ -12,7 +12,7 @@ async function bootstrap() {
   const PORT = 3000;
   app.use(cookieParser("TEMPSECRET"));
 
-  app.use(cors({origin: true,credentials: true}));
+  //app.use(cors({origin: true,credentials: true}));
 
   await app.listen(PORT);
 
