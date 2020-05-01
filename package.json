@@ -8,16 +8,18 @@
   },
   "author": "Jonas Schneider <jonas.max.schneider@gmail.com>",
   "license": "MIT",
-
   "scripts": {
     "start": "concurrently \"yarn run web\" \"yarn run server\"",
     "start:dev": "concurrently \"yarn run web\" \"yarn run server:dev\"",
     "web": "cd ./web && ng serve",
     "server:dev": "cd ./server && yarn run start:dev",
-    "server": "cd ./server && yarn run start"
+    "server": "cd ./server && yarn run start",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
-
   "dependencies": {
-    "concurrently": "^5.1.0"
-  }
+    "concurrently": "^5.1.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
