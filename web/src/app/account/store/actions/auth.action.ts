@@ -4,6 +4,16 @@ export namespace AuthActions {
     static readonly type = "[Auth API] UserSignInSuccess";
   }
 
+  export class RegisterSuccess {
+    static readonly type = "[Auth API] UserRegisterSuccess";
+  }
+
+  export class RegisterFailed {
+    static readonly type = "[Auth API] UserRegisterFailed";
+    constructor(public error: any) {
+    }
+  }
+
   export class SignInFailed {
     static readonly type = "[Auth API] UserSignInFailed";
     constructor(public error: any) {

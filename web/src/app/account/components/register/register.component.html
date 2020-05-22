@@ -1,0 +1,72 @@
+<!--<img
+  id="profil"
+  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  alt="profil"
+  width="10%"
+  height="50%"
+/>-->
+<mat-icon id="profile">person</mat-icon>
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+<div id="regcon">
+  <div id="back">
+    <a href=""><button mat-icon-button color="accent"><mat-icon>keyboard_arrow_left</mat-icon></button></a>
+  </div>
+  <div id="regcon1">
+    <li>
+      <output class="regcon" id="Registrieren">Registrieren</output>
+    </li>
+    <li>
+      <input
+              type="text"
+              class="regcon"
+              id="Benutzername"
+              size="30"
+              placeholder="Benutzername"
+              formControlName="username"
+      />
+    </li>
+    <li>
+      <input
+              type="text"
+              class="regcon"
+              id="Passwort1"
+              size="30"
+              placeholder="Passwort"
+              formControlName="password"
+      />
+    </li>
+    <li>
+      <input
+              type="text"
+              class="regcon"
+              id="Passwort2"
+              size="30"
+              placeholder="Passwort bestätigen"
+              formControlName="confirmPassword"
+      />
+    </li>
+    <li>
+      <input
+              type="date"
+              class="regcon"
+              size="30"
+              placeholder="Birthday"
+              formControlName="birthdate"
+      />
+    </li>
+    <li>
+      <input
+              type="text"
+              class="regcon"
+              size="30"
+              placeholder="Name"
+              formControlName="fullname"
+      />
+    </li>
+    <li>
+      <button type="submit" mat-raised-button class="regcon" id="los">Registrieren</button>
+    </li>
+  </div>
+</div>
+</form>
+

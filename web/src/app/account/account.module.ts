@@ -22,10 +22,13 @@ import { SignInPageState } from './store/states/signIn-page.state';
 import { MaterialModule } from '../material';
 import SignOutSuccess = AuthActions.SignOutSuccess;
 import { SignOutState } from './store/states/signOut.state';
+import { RegisterComponent } from './components/register/register.component';
+import { RegisterPageState } from './store/states/register-page.state';
 
 export const COMPONENTS = [
   SignInComponent,
   SignoutDialogComponent,
+  RegisterComponent
 ];
 
 @NgModule({
@@ -47,7 +50,7 @@ export class AccountModule {
         UserService,
         AuthService,
       ]
-    }
+    };
   }
 }
 
@@ -60,6 +63,7 @@ export class AccountModule {
       AuthStatusState,
       SignInPageState,
       SignOutState,
+      RegisterPageState
     ])
   ]
 })
