@@ -13,6 +13,6 @@
 
 </div>
 <div class="auth-ctrl" *ngIf="!(isSignedIn | async)">
-    <button mat-raised-button matTooltip="Register a new account and start playing">Register</button>
+    <button mat-raised-button routerLink="/register" matTooltip="Register a new account and start playing">Register</button>
     <button mat-button routerLink="/signin" matTooltip="Sign in to your existing Account">Sign in</button>
 </div>

@@ -33,8 +33,8 @@ export class AuthService {
    * @param dto The data transfer object for the registration
    * @returns The observable of the created user
    */
-  public register(dto: RegisterDto): Observable<IUser> {
-    return this._httpClient.post<IUser>(`${accountUrl}/register`, dto, );
+  public register(dto: RegisterDto): Observable<any> {
+    return this._httpClient.post<IBaseApiDto>(`${accountUrl}/register`, dto, );
   }
 
   /**

@@ -8,9 +8,10 @@ import GetUser = UserActions.GetUser;
 import SignInVerified = AuthActions.SignInVerified;
 import SignOutSuccess = AuthActions.SignOutSuccess;
 import { MatSnackBar } from '@angular/material/snack-bar';
+import RegisterSuccess = AuthActions.RegisterSuccess;
 
 export interface IAuthStatusState {
-  isSignedIn: boolean,
+  isSignedIn: boolean;
 }
 
 export const initialAuthStatusState: IAuthStatusState = {
@@ -55,6 +56,16 @@ export class AuthStatusState {
     await this._ngZone.run(async () => {
       await this._routerService.navigateByUrl("/");
     });
+  }
+
+  @Action(RegisterSuccess)
+  registerSuccess(ctx: StateContext<IAuthStatusState>, action: RegisterSuccess){
+    this._snackBarService.open("You registered and signed in successfully!", "Ok", {
+      duration: 1000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'left',
+    });
+    return ctx.dispatch(new GetUser());
   }
 
   @Action(SignOutSuccess)
