@@ -5,14 +5,24 @@ import { Injectable } from '@angular/core';
 import { ThemeActions } from '../actions/theme.action';
 import SetTheme = ThemeActions.SetTheme;
 
+/**
+ * The interface for the app (theme) state
+ */
 export interface IAppState{
-  theme: string,
+  theme: string;
 }
 
+/**
+ * The initial value of the app (theme) state
+ */
 export const initialAppState: IAppState = {
   theme: "light",
 };
 
+/**
+ * The state which stores the current theme
+ * Composed of the Sidenav State.
+ */
 @State({
   name: "app",
   defaults: initialAppState,
@@ -21,6 +31,10 @@ export const initialAppState: IAppState = {
 @Injectable()
 export class AppState {
 
+  /**
+   * Selects the current theme from the state
+   * @param state The state from which the theme is selected.
+   */
   @Selector()
   static getTheme(state: IAppState){
     return state.theme;
@@ -31,6 +45,11 @@ export class AppState {
   ) {
   }
 
+  /**
+   * Sets the theme to a new value
+   * @param ctx
+   * @param action Holds the new value for which the theme should be set.
+   */
   @Action(SetTheme)
   setTheme(ctx: StateContext<IAppState>, action: SetTheme){
     this._themeService.setTheme(action.theme);

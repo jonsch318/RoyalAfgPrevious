@@ -11,6 +11,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
+// A Module for common Material Modules in the components.
+
 export const MATERIALMODULES = [
   MatInputModule,
   MatButtonModule,

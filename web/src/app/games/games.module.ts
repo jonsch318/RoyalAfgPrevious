@@ -23,6 +23,9 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
+/**
+ * Includes Select Page and a dummy for playing a game.
+ */
 export class GamesModule {
   
 }

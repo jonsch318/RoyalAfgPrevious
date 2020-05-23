@@ -9,6 +9,7 @@ const COMPONENTS = [
   IndexComponent
 ];
 
+
 // @ts-ignore
 @NgModule({
   declarations: COMPONENTS,
@@ -19,4 +20,7 @@ const COMPONENTS = [
     GamesModule,
   ],
 })
+/**
+ * This is a test module for static webpages. This would be the path for the inclusions of the other Projects and Games.
+ */
 export class StaticModule { }

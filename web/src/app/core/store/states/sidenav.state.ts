@@ -5,39 +5,68 @@ import OpenSidenav = SidenavActions.OpenSidenav;
 import CloseSidenav = SidenavActions.CloseSidenav;
 import ToggleSidenav = SidenavActions.ToggleSidenav;
 
+/**
+ * The interface for the Sidenav state.
+ */
 export interface ISidenavState {
-  open: boolean,
+  open: boolean;
 }
 
+/**
+ * The initial value for the Sidenav state.
+ */
 export const initialSideNavState: ISidenavState = {
   open: false,
 };
 
+/**
+ * The state which stores information about the current sidenav status.
+ */
 @State({
   name: "sidenav",
   defaults: initialSideNavState,
 })
 @Injectable()
 export class SidenavState {
+
+  /**
+   * Selects the current status of the sidenav from the state.
+   * @param state The state from which teh current sidenav status is selected.
+   */
   @Selector()
   static getOpen(state: ISidenavState) {
     return state.open;
   }
 
+  /**
+   * Changes the Sidenav state to open.
+   * @param patchState
+   * @param action
+   */
   @Action(OpenSidenav)
   openSidenav({patchState}: StateContext<ISidenavState>, action: OpenSidenav){
     patchState({
       open: true
-    })
+    });
   }
 
+  /**
+   * Changes the Sidenav state to close.
+   * @param patchState
+   * @param action
+   */
   @Action(CloseSidenav)
   closeSidenav({patchState}: StateContext<ISidenavState>, action: CloseSidenav){
     patchState({
       open: false
-    })
+    });
   }
 
+  /**
+   * Inverts the current Sidenav state.
+   * @param patchState
+   * @param action
+   */
   @Action(ToggleSidenav)
   toggleSidenav({getState, patchState}: StateContext<ISidenavState>, action: ToggleSidenav){
     const state = getState();

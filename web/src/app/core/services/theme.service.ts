@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+/**
+ * The currently supported Themes.
+ */
 export enum Themes {
   light = "light",
   dark = "dark",

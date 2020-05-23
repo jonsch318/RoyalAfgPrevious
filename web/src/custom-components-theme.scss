@@ -3,6 +3,8 @@
 @import "./tooltip";
 @import "./app/games/games.module.theme";
 
+// Provides the current theme for all of the components.
+
 @mixin custom-components-theme($theme){
   @include login-component-theme($theme);
   @include core-theme-provider($theme);

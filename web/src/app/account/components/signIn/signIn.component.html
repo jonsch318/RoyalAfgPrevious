@@ -1,6 +1,8 @@
 <div class="login-container">
+  <!--Assign the formGroup to the form-->
   <form [formGroup]="formGroup" (ngSubmit)="submit()">
       <div class="signin-wrapper">
+        <!--Stepper is linear. It checks after each step if the Validation is valid.-->
         <mat-horizontal-stepper class="background" linear [formGroup]="formGroup">
           <mat-step [stepControl]="formGroup.get('username')">
             <ng-template matStepLabel>
