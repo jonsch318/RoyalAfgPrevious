@@ -25,13 +25,14 @@ export class RegisterComponent implements OnInit {
 
   private formInit(){
     const username = new FormControl(null, [Validators.required, Validators.maxLength(100)]);
+    const email = new FormControl(null, [Validators.required, Validators.maxLength(100)]);
     const password = new FormControl(null, [Validators.required, Validators.maxLength(100)]);
     const confirmPassword = new FormControl(null, [Validators.required, Validators.maxLength(100)]);
     const birthdate = new FormControl(null, [Validators.required, Validators.maxLength(100)]);
     const fullname = new FormControl(null, [Validators.required, Validators.maxLength(100)]);
 
     this.formGroup = this._formBuilder.group({
-      username, password, confirmPassword, birthdate, fullname
+      username, email, password, confirmPassword, birthdate, fullname
     }, {
       validators: MatchValidator("password", "confirmPassword")
     });
