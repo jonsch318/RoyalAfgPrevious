@@ -16494,7 +16494,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         for (var i = 0; i < fnNames.length; i++) {
           var _ret = _loop3(i);
 
-          if (_ret === "continue") continue;
+          if (_ret === "continue")
         }
       }
 

@@ -7,7 +7,6 @@ import { catchError, map } from 'rxjs/operators';
 import { AuthActions } from '../actions/auth.action';
 import SignInSuccess = AuthActions.SignInSuccess;
 import SignInFailed = AuthActions.SignInFailed;
-import { of } from 'rxjs';
 import { criticalError, invalidCredentials } from '../errors/signIn-page.errors';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -54,7 +53,7 @@ export class SignInPageState {
 
   /**
    * kicks of the sign in process. This uses the auth service to do so.
-   * @param ctx
+   * @param ctx The state context
    * @param action The action contains the necessary information for the server.
    */
   @Action(SignIn)
@@ -81,8 +80,8 @@ export class SignInPageState {
 
   /**
    * The sign in process has failed. Displaying the errors received by the process.
-   * @param ctx
-   * @param action Contains the erorrs
+   * @param ctx The current state context
+   * @param action Contains the errors
    */
   @Action(SignInFailed)
   signInFailed(ctx: StateContext<ISignInPageState>, action: SignInFailed) {

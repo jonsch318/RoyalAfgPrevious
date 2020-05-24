@@ -5,9 +5,8 @@ import { RegisterDto } from '../../dtos/register-dto';
 import {JwtService} from "@nestjs/jwt";
 import { WalletService } from '../../../wallet/services/wallet/wallet.service';
 import { IUserDoc } from '../../../user/interfaces/user-doc.interface';
-import { CookieOptions } from '@nestjsplus/cookies/index';
+import { CookieOptions } from '@nestjsplus/cookies';
 import * as moment from 'moment';
-import { IUser } from '../../../user/interfaces/user.interface';
 import { UserService } from '../../../user/services/user/user.service';
 
 /**

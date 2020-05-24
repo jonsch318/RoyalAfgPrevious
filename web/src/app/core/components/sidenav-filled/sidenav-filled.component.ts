@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { SidenavActions, SidenavState, ThemeActions } from '../../store';
+import { SidenavActions } from '../../store/actions/sidenav.action';
+import { SidenavState } from '../../store/states/sidenav.state';
+import { ThemeActions } from '../../store/actions/theme.action';
 import { Observable } from 'rxjs';
 import SetTheme = ThemeActions.SetTheme;
 import OpenSidenav = SidenavActions.OpenSidenav;

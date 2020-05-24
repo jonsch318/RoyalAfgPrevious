@@ -40,6 +40,11 @@ export class SignOutState {
   ) {
   }
 
+  /**
+   * Starts the sign out process.
+   * @param ctx The current state
+   * @param action The action with is processed.
+   */
   @Action(SignOut)
   async signOut(ctx: StateContext<ISignOutState>, action: SignOut){
     ctx.patchState({
@@ -55,6 +60,11 @@ export class SignOutState {
     return ctx.dispatch(new SignOutDeclined());
   }
 
+  /**
+   * The sign out process was successful
+   * @param ctx The current state
+   * @param action The action which is processed
+   */
   @Action(SignOutConfirmed)
   async signOutConfirmed(ctx: StateContext<ISignOutState>, action: SignOutConfirmed){
     try {
@@ -62,11 +72,15 @@ export class SignOutState {
       ctx.dispatch(new SignOutSuccess());
     }
     catch (e) {
-      ctx.dispatch(new SignOutFailed(e))
+      ctx.dispatch(new SignOutFailed(e));
     }
   }
 
-
+  /**
+   * The sign out process failed
+   * @param ctx The current state
+   * @param action The action which is processed. It contains information about the error
+   */
   @Action(SignOutFailed)
   signOutFailed(ctx: StateContext<ISignOutState>, action: SignOutFailed){
     console.log("Sign out Failed with error: " + action.error);

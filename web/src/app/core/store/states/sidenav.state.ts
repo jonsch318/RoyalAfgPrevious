@@ -40,8 +40,8 @@ export class SidenavState {
 
   /**
    * Changes the Sidenav state to open.
-   * @param patchState
-   * @param action
+   * @param patchState A function to change the state
+   * @param action The action that is processed
    */
   @Action(OpenSidenav)
   openSidenav({patchState}: StateContext<ISidenavState>, action: OpenSidenav){
@@ -52,8 +52,8 @@ export class SidenavState {
 
   /**
    * Changes the Sidenav state to close.
-   * @param patchState
-   * @param action
+   * @param patchState A function to change the state
+   * @param action The action that is processed
    */
   @Action(CloseSidenav)
   closeSidenav({patchState}: StateContext<ISidenavState>, action: CloseSidenav){
@@ -64,8 +64,9 @@ export class SidenavState {
 
   /**
    * Inverts the current Sidenav state.
-   * @param patchState
-   * @param action
+   * @param patchState A function to change the state
+   * @param getState A function to get the current state
+   * @param action The action that is processed
    */
   @Action(ToggleSidenav)
   toggleSidenav({getState, patchState}: StateContext<ISidenavState>, action: ToggleSidenav){

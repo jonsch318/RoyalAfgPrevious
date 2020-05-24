@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { SidenavActions } from '../../store';
+import { SidenavActions } from '../../store/actions/sidenav.action';
 import CloseSidenav = SidenavActions.CloseSidenav;
 import OpenSidenav = SidenavActions.OpenSidenav;
 

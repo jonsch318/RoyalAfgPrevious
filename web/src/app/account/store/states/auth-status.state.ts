@@ -53,8 +53,8 @@ export class AuthStatusState {
 
   /**
    * Changes the State after the user has successfully signed in.
-   * @param ctx
-   * @param action
+   * @param ctx The state context
+   * @param action The associated action
    */
   @Action(SignInSuccess)
   signInSuccess(ctx: StateContext<IAuthStatusState>, action: SignInSuccess) {
@@ -66,6 +66,11 @@ export class AuthStatusState {
     return ctx.dispatch(new GetUser());
   }
 
+  /**
+   * The sign in was verified.
+   * @param ctx The state context
+   * @param action The action that is processed
+   */
   @Action(SignInVerified)
   async signInVerified(ctx: StateContext<IAuthStatusState>, action: SignInVerified) {
     ctx.patchState({
@@ -78,8 +83,8 @@ export class AuthStatusState {
 
   /**
    * Changes the state after the user has successfully registered.
-   * @param ctx
-   * @param action
+   * @param ctx The state context
+   * @param action The action that is processed
    */
   @Action(RegisterSuccess)
   registerSuccess(ctx: StateContext<IAuthStatusState>, action: RegisterSuccess){
@@ -93,8 +98,8 @@ export class AuthStatusState {
 
   /**
    * Changes the state after a successful log out process.
-   * @param ctx
-   * @param action
+   * @param ctx The state context
+   * @param action The action that is processed
    */
   @Action(SignOutSuccess)
   async signOutSuccess(ctx: StateContext<IAuthStatusState>, action: SignOutSuccess) {

@@ -61,7 +61,7 @@ export class WalletService {
     await this.validateWallet(user);
     const wallet = await this.walletModel.findOne({user: user});
 
-    if(!wallet) throw new InternalServerErrorException("Something has gotten terribly wrong at the creation of a wallet.")
+    if(!wallet) throw new InternalServerErrorException("Something has gotten terribly wrong at the creation of a wallet.");
     return wallet;
   }
 
