@@ -5,8 +5,10 @@ import { Model } from 'mongoose';
 import Decimal from 'decimal.js';
 import { IUserDoc } from '../../../user/interfaces/user-doc.interface';
 import { IWalletDoc } from '../../interfaces/wallet-doc.interface';
-import { IWallet } from '../../interfaces/wallet.interface';
 
+/**
+ * Enables the creation, search and validation of a wallet.
+ */
 @Injectable()
 export class WalletService {
 
@@ -63,6 +65,10 @@ export class WalletService {
     return wallet;
   }
 
+  /**
+   * Finds the users wallet and returns the decimal format balance of the wallet. This is deprecated due to the virtual property.
+   * @param user The user for which wallet is searched.
+   */
   async getBalance(user: IUserDoc): Promise<Decimal>{
     const wallet = await this.findOne(user);
     return wallet.balance;

@@ -6,9 +6,9 @@ import { SignInDto } from '../models/signInDto';
 import { RegisterDto } from '../models/register.dto';
 import { ancestorWhere } from 'tslint';
 import { IBaseApiDto } from '../../core/Dtos/baseApi.dto';
+import { APIURL, CORSENABLED } from 'src/app/constants/connection.constants';
 
 
-export const accountUrl = "http://localhost:2000/api/account";
 
 /**
  * Provides functionality of the authentication actions.
@@ -25,7 +25,9 @@ export class AuthService {
    * @returns The observable of the process.
    */
   public signIn(dto: SignInDto): Observable<any> {
-    return this._httpClient.post<IBaseApiDto>(`${accountUrl}/signin`, dto, );
+    return this._httpClient.post<IBaseApiDto>(`${APIURL}/account/signin`, dto, {
+      withCredentials: CORSENABLED,
+    });
   }
 
   /**
@@ -34,7 +36,9 @@ export class AuthService {
    * @returns The observable of the created user
    */
   public register(dto: RegisterDto): Observable<any> {
-    return this._httpClient.post<IBaseApiDto>(`${accountUrl}/register`, dto, );
+    return this._httpClient.post<IBaseApiDto>(`${APIURL}/account/register`, dto, {
+      withCredentials: CORSENABLED,
+    });
   }
 
   /**
@@ -45,6 +49,8 @@ export class AuthService {
     console.log("Signing out user...");
     return await this._httpClient.post<{
       message: string,
-    }>(`${accountUrl}/signout`,{}).toPromise();
+    }>(`${APIURL}/account/signout`,{}, {
+      withCredentials: CORSENABLED 
+    }).toPromise();
   }
 }

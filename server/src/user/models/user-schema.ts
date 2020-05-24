@@ -1,8 +1,14 @@
 import * as mongoose from "mongoose";
 import * as bcrypt from "bcryptjs";
 
+/**
+ * The name of the user schema
+ */
 export const UserSchemaName = "User";
 
+/**
+ * The schema of the user class. This is the object which will get stored in the database
+ */
 export const UserSchema = new mongoose.Schema({
   fullname: {
     type: String,

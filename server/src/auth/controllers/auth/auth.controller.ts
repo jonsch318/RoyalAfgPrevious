@@ -1,14 +1,16 @@
-import { Body, Request, Controller, Post, UseGuards, Req, Res, Logger, HttpCode, Header } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Req, Logger, HttpCode } from '@nestjs/common';
 import { RegisterDto } from '../../dtos/register-dto';
 import { AuthService } from '../../services/auth/auth.service';
 import { LocalAuthGuard } from '../../strategies/local-auth.guard';
 import { LoginDto } from '../../dtos/login-dto';
 import * as moment from "moment";
 import { UserService } from '../../../user/services/user/user.service';
-import { Status } from 'tslint/lib/runner';
-import { ClearCookies, CookieOptions, Cookies, SetCookies } from '@nestjsplus/cookies';
+import { ClearCookies, CookieOptions, SetCookies } from '@nestjsplus/cookies';
 import { JwtAuthGuard } from '../../strategies/jwt-auth.guard';
 
+/**
+ * Controller for the Authentication Processes
+ */
 @Controller('api/account')
 export class AuthController {
 
@@ -18,11 +20,20 @@ export class AuthController {
   ) {
   }
 
+  /**
+   * Route /account/register. Registers a new user
+   * @param dto The required information to register a new user
+   */
   @Post("register")
   async register(@Body() dto: RegisterDto): Promise<any>{
     return this._authService.register(dto);
   }
 
+  /**
+   * Route /account/signin. Authenticates a user and creates a jwt Token to persist his authentication.
+   * @param dto The required information to sign the user in
+   * @param req
+   */
   @SetCookies()
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
@@ -55,6 +66,9 @@ export class AuthController {
     };
   }
 
+  /**
+   * Signs the user out. Deletes the Authentication Cookie.
+   */
   @ClearCookies("SESSIONID")
   @UseGuards(JwtAuthGuard)
   @HttpCode(200)
