@@ -23,41 +23,37 @@ export class AuthController {
   /**
    * Route /account/register. Registers a new user
    * @param dto The required information to register a new user
+   * @param req The request object.
    */
   @SetCookies()
   @HttpCode(200)
   @Post("register")
-  async register(@Body() dto: RegisterDto): Promise<any>{
-    return this._authService.register(dto);
+  async register(@Body() dto: RegisterDto, @Req() req): Promise<any>{
+    const user = await this._authService.register(dto);
+    req._cookies = await this._authService.createCookie(user);
 
+    return {
+      error: "",
+      data: {
+        id: user.id,
+        username: user.username,
+        fullname: user.fullname,
+      },
+    };
 
   }
 
   /**
    * Route /account/signin. Authenticates a user and creates a jwt Token to persist his authentication.
    * @param dto The required information to sign the user in
-   * @param req
+   * @param req The request object which contains the signed in user
    */
   @SetCookies()
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
   @Post("signin")
   async signin(@Body() dto: LoginDto, @Req() req, ){
-    const token = await this._authService.signin(req.user);
-    const options: CookieOptions = {
-      expires: moment().add(10, "days").toDate(),
-      signed: false,
-      secure: false,
-      sameSite: false,
-      httpOnly: true,
-    };
-    req._cookies = [
-      {
-        name: "SESSIONID",
-        value: token,
-        options: options,
-      }
-    ];
+    req._cookies = this._authService.createCookie(req.user);
     const user = await this._userService.findOne(dto.username);
     Logger.debug("Created JWT and Cookie");
     return {

@@ -5,6 +5,9 @@ import { RegisterDto } from '../../dtos/register-dto';
 import {JwtService} from "@nestjs/jwt";
 import { WalletService } from '../../../wallet/services/wallet/wallet.service';
 import { IUserDoc } from '../../../user/interfaces/user-doc.interface';
+import { CookieOptions } from '@nestjsplus/cookies/index';
+import * as moment from 'moment';
+import { IUser } from '../../../user/interfaces/user.interface';
 
 /**
  * Provides methods to register, sign in and validate a user.
@@ -76,6 +79,24 @@ export class AuthService {
       algorithm: 'HS256',
       audience: "http://localhost:3000",
     });
+  }
+
+  async createCookie(user: IUserDoc): Promise<any>{
+    const token = await this.signin(user);
+    const options: CookieOptions = {
+      expires: moment().add(10, "days").toDate(),
+      signed: false,
+      secure: false,
+      sameSite: false,
+      httpOnly: true,
+    };
+    return [
+      {
+        name: "SESSIONID",
+        value: token,
+        options: options,
+      }
+    ];
   }
 
 }
