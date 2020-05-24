@@ -14,7 +14,9 @@ import { WalletModule } from '../wallet/wallet.module';
 @Module({
   imports:
     [
+      // Passport is used to ease the implementation of Authentication.
       PassportModule.register({defaultStrategy: "jwt"}),
+      // Lets us create jwt Tokens
       JwtModule.register({
         secret: jwtConstants.secret,
         signOptions: {
@@ -27,6 +29,7 @@ import { WalletModule } from '../wallet/wallet.module';
   controllers: [AuthController],
   providers:
     [
+      // Services and Guards defined in this module.
       AuthService,
       LocalStrategy,
       LocalAuthGuard,

@@ -5,11 +5,15 @@ import cookieParser = require('cookie-parser');
 import cors = require('cors');
 
 
-
+/**
+ * This bootstraps and start the server.
+ */
 async function bootstrap() {
+  // creation of the INestApplication, which intern uses Express.
   const app = await NestFactory.create(AppModule);
 
   const PORT = 3000;
+  // Obviously the secret would not be configured here in a production application.
   app.use(cookieParser("TEMPSECRET"));
   
   // this enables cors for the cookies. In production applications this would be discarded in favor of a reverse proxy.
@@ -20,6 +24,7 @@ async function bootstrap() {
     }
   );
 
+  // Activate the server on the given port
   await app.listen(PORT);
 
   Logger.warn(`Application successfully started listening on port ${PORT}`);
