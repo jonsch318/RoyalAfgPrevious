@@ -35,6 +35,9 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
+/**
+ * The core Module provides general features of the application. Like the Navbar and Theming.
+ */
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
@@ -42,6 +45,6 @@ export class CoreModule {
       providers: [
         ThemeService,
       ],
-    }
+    };
   }
 }

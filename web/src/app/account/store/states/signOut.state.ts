@@ -12,7 +12,7 @@ import SignOutDeclined = SignOutActions.SignOutDeclined;
 import SignOut = SignOutActions.SignOut;
 
 export interface ISignOutState {
-  pending: boolean,
+  pending: boolean;
   errors?: any;
 }
 
@@ -21,7 +21,12 @@ export const initialSignOutState: ISignOutState = {
   errors: null,
 };
 
-
+/**
+ * The state of the sign out process. Determines if any errors are present.
+ * This state dispatches new Actions which change mainly the Auth-status State.
+ * There is no sign out component.
+ * A dialog box is instead launched when the user request a sign out.
+ */
 @State({
   name: "signOut",
   defaults: initialSignOutState,

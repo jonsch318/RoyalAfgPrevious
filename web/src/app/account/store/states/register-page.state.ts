@@ -16,11 +16,17 @@ import RegisterFailed = AuthActions.RegisterFailed;
 import RegisterSuccess = AuthActions.RegisterSuccess;
 
 
+/**
+ * The interface for the register page state.
+ */
 export interface IRegisterPageState {
   pending: boolean;
   error: string | null;
 }
 
+/**
+ * The initial state of the RegisterPage State.
+ */
 export const initialRegisterPageState: IRegisterPageState = {
   pending: false,
   error: null,
@@ -28,6 +34,10 @@ export const initialRegisterPageState: IRegisterPageState = {
 
 export const REGISTERPAGE_STATE_TOKEN = new StateToken<IRegisterPageState>("registerPage");
 
+/**
+ * The state of the registration page. Determines if any errors are present.
+ * This state dispatches new Actions which change mainly the Auth-status State.
+ */
 @State({
   name: REGISTERPAGE_STATE_TOKEN,
   defaults: initialRegisterPageState,
@@ -47,6 +57,11 @@ export class RegisterPageState {
   ) {
   }
 
+  /**
+   * kicks of the registration process via the auth service.
+   * @param ctx
+   * @param action Contains the necessary information for the server.
+   */
   @Action(Register)
   register(ctx: StateContext<IRegisterPageState>, action: Register){
     ctx.patchState({
@@ -65,6 +80,11 @@ export class RegisterPageState {
     );
   }
 
+  /**
+   * The registration process was unsuccessful display the errors of the process.
+   * @param ctx
+   * @param action
+   */
   @Action(RegisterFailed)
   registerFailed(ctx: StateContext<IRegisterPageState>, action: RegisterFailed){
     return ctx.patchState({

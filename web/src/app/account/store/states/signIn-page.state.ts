@@ -11,12 +11,17 @@ import { of } from 'rxjs';
 import { criticalError, invalidCredentials } from '../errors/signIn-page.errors';
 import { HttpErrorResponse } from '@angular/common/http';
 
-
+/**
+ * The interface for the state
+ */
 export interface ISignInPageState {
-  pending: boolean,
-  error: string | null,
+  pending: boolean;
+  error: string | null;
 }
 
+/**
+ * The initial values of the SignInPage State
+ */
 export const initialSignInPageState: ISignInPageState = {
   pending: false,
   error: null,
@@ -24,6 +29,10 @@ export const initialSignInPageState: ISignInPageState = {
 
 export const SIGNINPAGE_STATE_TOKEN = new StateToken<ISignInPageState>("signInPage");
 
+/**
+ * The state of the sign in page. Determines if any errors are present.
+ * This state dispatches new Actions which change mainly the Auth-status State.
+ */
 @State({
   name: SIGNINPAGE_STATE_TOKEN,
   defaults: initialSignInPageState,
@@ -43,6 +52,11 @@ export class SignInPageState {
   ) {
   }
 
+  /**
+   * kicks of the sign in process. This uses the auth service to do so.
+   * @param ctx
+   * @param action The action contains the necessary information for the server.
+   */
   @Action(SignIn)
   signIn(ctx: StateContext<ISignInPageState>, action: SignIn) {
     ctx.patchState({
@@ -65,6 +79,11 @@ export class SignInPageState {
     );
   }
 
+  /**
+   * The sign in process has failed. Displaying the errors received by the process.
+   * @param ctx
+   * @param action Contains the erorrs
+   */
   @Action(SignInFailed)
   signInFailed(ctx: StateContext<ISignInPageState>, action: SignInFailed) {
     return ctx.patchState({

@@ -5,9 +5,11 @@ import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
   {
+    // Configures the route for the sign in page.
     path: "signin",
     component: SignInComponent,
   },{
+    // Configures the route for the register page.
     path: "register",
     component: RegisterComponent
   }

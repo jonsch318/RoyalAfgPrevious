@@ -42,6 +42,9 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
+/**
+ * Provides Services, Pages for the Account system.
+ */
 export class AccountModule {
   static forRoot(): ModuleWithProviders {
     return {
@@ -67,6 +70,9 @@ export class AccountModule {
     ])
   ]
 })
+/**
+ * The Module imports the AccountModule, but adds the states.
+ */
 export class AccountRootModule {
 
 }

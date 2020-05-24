@@ -10,15 +10,24 @@ import SignOutSuccess = AuthActions.SignOutSuccess;
 import { MatSnackBar } from '@angular/material/snack-bar';
 import RegisterSuccess = AuthActions.RegisterSuccess;
 
+/**
+ * The interface for the AuthStatus State.
+ */
 export interface IAuthStatusState {
   isSignedIn: boolean;
 }
 
+/**
+ * The initial values for the AuthStatus State.
+ */
 export const initialAuthStatusState: IAuthStatusState = {
   isSignedIn: false,
 };
 
-
+/**
+ * Stores the State of the Authentication Status. The short version: is the user signed in or not?
+ * This gets update with when the Authentication Actions are dispatched.
+ */
 @State<IAuthStatusState>({
   name: "status",
   defaults: initialAuthStatusState,
@@ -26,6 +35,10 @@ export const initialAuthStatusState: IAuthStatusState = {
 @Injectable()
 export class AuthStatusState {
 
+  /**
+   * Selects the status of the Authentication pipeline. In short: Is the user signed in?
+   * @param state The state from which the status is selected.
+   */
   @Selector()
   static getSignedIn(state: IAuthStatusState){
     return state.isSignedIn;
@@ -38,6 +51,11 @@ export class AuthStatusState {
   ) {
   }
 
+  /**
+   * Changes the State after the user has successfully signed in.
+   * @param ctx
+   * @param action
+   */
   @Action(SignInSuccess)
   signInSuccess(ctx: StateContext<IAuthStatusState>, action: SignInSuccess) {
     this._snackBarService.open("You signed in successfully!", "Ok", {
@@ -58,6 +76,11 @@ export class AuthStatusState {
     });
   }
 
+  /**
+   * Changes the state after the user has successfully registered.
+   * @param ctx
+   * @param action
+   */
   @Action(RegisterSuccess)
   registerSuccess(ctx: StateContext<IAuthStatusState>, action: RegisterSuccess){
     this._snackBarService.open("You registered and signed in successfully!", "Ok", {
@@ -68,6 +91,11 @@ export class AuthStatusState {
     return ctx.dispatch(new GetUser());
   }
 
+  /**
+   * Changes the state after a successful log out process.
+   * @param ctx
+   * @param action
+   */
   @Action(SignOutSuccess)
   async signOutSuccess(ctx: StateContext<IAuthStatusState>, action: SignOutSuccess) {
     ctx.dispatch(new GetUser());
