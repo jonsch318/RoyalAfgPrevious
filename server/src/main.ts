@@ -11,8 +11,14 @@ async function bootstrap() {
 
   const PORT = 3000;
   app.use(cookieParser("TEMPSECRET"));
-
-  //app.use(cors({origin: true,credentials: true}));
+  
+  // this enables cors for the cookies. In production applications this would be discarded in favor of a reverse proxy.
+  app.enableCors(
+    {
+      origin: true,
+      credentials: true, 
+    }
+  );
 
   await app.listen(PORT);
 

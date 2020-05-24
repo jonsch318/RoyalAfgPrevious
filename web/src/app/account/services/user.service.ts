@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
-import { accountUrl } from './auth.service';
+import { APIURL, CORSENABLED } from 'src/app/constants/connection.constants';
 
 @Injectable()
 export class UserService {
@@ -11,7 +11,9 @@ export class UserService {
   }
 
   getUser(): Observable<IUser>{
-    return this._httpClient.get<IUser>(`${accountUrl}/getUser`);
+    return this._httpClient.get<IUser>(`${APIURL}/account/getUser`, {
+      withCredentials: CORSENABLED,
+    });
   }
 
 }

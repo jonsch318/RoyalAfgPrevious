@@ -20,6 +20,8 @@ import { logger } from 'codelyzer/util/logger';
       MongooseModule.forRootAsync({
         imports: [ConfigModule],
         useFactory: async (_configService: ConfigService) => ({
+          // Configures Mongoose to connect with the database. The connection string is located in the .env file. In real world
+          // application this would defenetly be secret and not published to Github
           uri: _configService.get<string>("DATABASE_CONNECTION_STRING"),
         }),
         inject: [ConfigService],
