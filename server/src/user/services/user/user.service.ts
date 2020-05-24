@@ -4,6 +4,9 @@ import { UserSchemaName } from '../../models/user-schema';
 import { Model } from 'mongoose';
 import { IUserDoc } from '../../interfaces/user-doc.interface';
 
+/**
+ * Provides functionality to find users in the database.
+ */
 @Injectable()
 export class UserService {
   constructor(

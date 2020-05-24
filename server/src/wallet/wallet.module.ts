@@ -5,6 +5,9 @@ import { PurchaseController } from './controllers/purchase/purchase.controller';
 import { PurchaseService } from './services/purchase/purchase.service';
 import { WalletService } from './services/wallet/wallet.service';
 
+/**
+ * Provides the wallet functionality
+ */
 @Module({
   imports: [
     MongooseModule.forFeature([{name: WalletSchemaName, schema: WalletSchema}])

@@ -1,3 +1,6 @@
+/**
+ * A simpler user interface.
+ */
 export interface IUser {
   id: string,
   fullname: string,
