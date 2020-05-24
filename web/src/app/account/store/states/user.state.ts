@@ -58,7 +58,10 @@ export class UserState {
   @Action(GetUser)
   getUser(ctx: StateContext<IUserState>, action: GetUser){
     return this._userService.getUser().pipe(
-      map(user => ctx.dispatch(new GetUserSuccess(user))),
+      map(user => {
+        if(user)
+          ctx.dispatch(new GetUserSuccess(user));
+      }),
       catchError(error =>
         of(ctx.dispatch(new GetUserFailed(error))
       ))
