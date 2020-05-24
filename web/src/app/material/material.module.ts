@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 // A Module for common Material Modules in the components.
 
@@ -20,6 +22,8 @@ export const MATERIALMODULES = [
   MatMenuModule,
   MatStepperModule,
   MatCheckboxModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
   MatListModule,
   MatToolbarModule,
   MatSidenavModule,

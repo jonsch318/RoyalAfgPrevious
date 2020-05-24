@@ -24,9 +24,13 @@ export class AuthController {
    * Route /account/register. Registers a new user
    * @param dto The required information to register a new user
    */
+  @SetCookies()
+  @HttpCode(200)
   @Post("register")
   async register(@Body() dto: RegisterDto): Promise<any>{
     return this._authService.register(dto);
+
+
   }
 
   /**
