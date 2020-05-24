@@ -1,12 +1,11 @@
-import { Body, Request, Controller, Post, UseGuards, Req, Res, Logger, HttpCode, Header } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Req, Logger, HttpCode } from '@nestjs/common';
 import { RegisterDto } from '../../dtos/register-dto';
 import { AuthService } from '../../services/auth/auth.service';
 import { LocalAuthGuard } from '../../strategies/local-auth.guard';
 import { LoginDto } from '../../dtos/login-dto';
 import * as moment from "moment";
 import { UserService } from '../../../user/services/user/user.service';
-import { Status } from 'tslint/lib/runner';
-import { ClearCookies, CookieOptions, Cookies, SetCookies } from '@nestjsplus/cookies';
+import { ClearCookies, CookieOptions, SetCookies } from '@nestjsplus/cookies';
 import { JwtAuthGuard } from '../../strategies/jwt-auth.guard';
 
 /**
