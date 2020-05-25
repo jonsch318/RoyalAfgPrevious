@@ -1,0 +1,16 @@
+package(default_visibility=["//visibility:public"])
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+
+ts_library(
+    name = "authcontroller",
+    srcs = glob(["*.ts"]),
+    deps = [
+        "//src/auth/dtos:dtos",
+        "//src/auth/services/auth:authservice",
+        "//src/user/services/user:userservice",
+        "//src/auth/strategies:strategies",
+        "@npm//@nestjs/common",
+        "@npm//@nestjsplus/cookies",
+        "@npm//moment",
+    ],
+)

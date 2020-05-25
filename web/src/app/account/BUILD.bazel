@@ -11,8 +11,8 @@ NG_FACTORY_ADDED_IMPORTS = [
 ng_module(
     name = "app",
     srcs = glob(
-        include = ["**/*.ts"],
-        exclude = ["**/*.spec.ts",],
+        include = ["*.ts"],
+        exclude = ["*.spec.ts",],
     ),
     deps = NG_FACTORY_ADDED_IMPORTS + [
         "@npm//@angular/core",

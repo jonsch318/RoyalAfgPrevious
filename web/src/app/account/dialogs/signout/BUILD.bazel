@@ -1,0 +1,24 @@
+load("@npm_angular_bazel//:index.bzl", "ng_module")
+package(default_visibility = ["//:__subpackages__"])
+
+NG_FACTORY_ADDED_IMPORTS = [
+    "@npm//@angular/animations",
+    "@npm//@angular/cdk",
+    "@npm//@angular/material",
+    "@npm//@angular/forms",
+]
+
+ng_module(
+    name = "app",
+    srcs = glob(
+        include = ["*.ts"],
+        exclude = ["*.spec.ts",],
+    ),
+    deps = NG_FACTORY_ADDED_IMPORTS + [
+        "@npm//@angular/core",
+        "@npm//@angular/platform-browser",
+        "@npm//@angular/router",
+        "@npm//@types",
+        "@npm//rxjs",
+    ],
+)

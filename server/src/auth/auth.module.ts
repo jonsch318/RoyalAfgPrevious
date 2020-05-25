@@ -6,35 +6,37 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controllers/auth/auth.controller';
 import { LocalAuthGuard } from './strategies/local-auth.guard';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants/jwt.constants';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtAuthGuard } from './strategies/jwt-auth.guard';
 import { WalletModule } from '../wallet/wallet.module';
+import { ConfigService, ConfigModule } from '@nestjs/config';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Module({
-  imports:
-    [
-      PassportModule.register({defaultStrategy: "jwt"}),
-      JwtModule.register({
-        secret: jwtConstants.secret,
+  imports: [
+    ConfigModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (_configService: ConfigService) => ({
+        secret: _configService.get<string>('COOKIE_SECRET'),
         signOptions: {
-          expiresIn: "7d",
-        }
+          expiresIn: '7d',
+        },
       }),
-      UserModule,
-      WalletModule
-    ],
+    }),
+    UserModule,
+    WalletModule,
+  ],
   controllers: [AuthController],
-  providers:
-    [
-      AuthService,
-      LocalStrategy,
-      LocalAuthGuard,
-      JwtStrategy,
-      JwtAuthGuard,
-    ],
-  exports: [AuthService]
+  providers: [
+    AuthService,
+    LocalStrategy,
+    LocalAuthGuard,
+    JwtStrategy,
+    JwtAuthGuard,
+  ],
+  exports: [AuthService],
 })
-export class AuthModule {
-
-}
+export class AuthModule {}

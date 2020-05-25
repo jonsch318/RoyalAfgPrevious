@@ -19,7 +19,7 @@ sass_binary(
 multi_sass_binary(
     name = "styles",
     srcs = glob(
-      include = ["**/*.scss"],
+      include = ["*.scss"],
       exclude = ["styles.scss"],
     ),
 )
@@ -27,18 +27,18 @@ multi_sass_binary(
 ng_module(
     name = "src",
     srcs = glob(
-        include = ["**/*.ts"],
+        include = ["*.ts"],
         exclude = [
-            "**/*.spec.ts",
+            "*.spec.ts",
             "main.ts",
             "test.ts",
             "initialize_testbed.ts",
         ],
     ),
     assets = glob([
-      "**/*.css",
-      "**/*.html",
-    ]) + ([":styles"] if len(glob(["**/*.scss"])) else []),
+      "*.css",
+      "*.html",
+    ]) + ([":styles"] if len(glob(["*.scss"])) else []),
     generate_ve_shims = True,
     deps = [
         "@npm//@angular/core",
@@ -140,7 +140,7 @@ ts_devserver(
 ts_library(
     name = "test_lib",
     testonly = 1,
-    srcs = glob(["**/*.spec.ts"]),
+    srcs = glob(["*.spec.ts"]),
     deps = [
         ":src",
         "@npm//@angular/core",

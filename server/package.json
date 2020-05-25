@@ -45,6 +45,10 @@
     "rxjs": "^6.5.4"
   },
   "devDependencies": {
+    "@bazel/bazelisk": "^1.4.0",
+    "@bazel/ibazel": "^0.13.1",
+    "@bazel/karma": "^1.6.1",
+    "@bazel/typescript": "^1.6.1",
     "@nestjs/cli": "^7.0.0",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.2",
