@@ -1,0 +1,1 @@
+{"bin": "bazel-out/x64_windows-fastbuild/bin", "modules": {"project": ["execroot", "bazel-out/x64_windows-fastbuild/bin"]}, "root": "npm/node_modules", "workspace": "project"}

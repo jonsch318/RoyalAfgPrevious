@@ -1,0 +1,1 @@
+{"bin": "bazel-out/host/bin", "modules": {"project": ["execroot", "bazel-out/host/bin"]}, "root": "build_bazel_rules_sass_deps/node_modules", "workspace": "project"}

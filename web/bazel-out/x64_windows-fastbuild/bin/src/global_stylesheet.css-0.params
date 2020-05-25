@@ -1,0 +1,6 @@
+--style=compressed
+--load-path=./
+--load-path=bazel-out/x64_windows-fastbuild/bin/
+--load-path=bazel-out/x64_windows-fastbuild/bin/
+src/styles.scss
+bazel-out/x64_windows-fastbuild/bin/src/global_stylesheet.css

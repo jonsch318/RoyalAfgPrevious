@@ -8,7 +8,6 @@
   },
   "author": "Jonas Schneider <jonas.max.schneider@gmail.com>",
   "license": "MIT",
-
   "scripts": {
     "start": "concurrently \"yarn run web\" \"yarn run server\"",
     "start:dev": "concurrently \"yarn run web\" \"yarn run server:dev\"",
@@ -16,7 +15,6 @@
     "server:dev": "cd ./server && yarn run start:dev",
     "server": "cd ./server && yarn run start"
   },
-
   "dependencies": {
     "concurrently": "^5.1.0"
   }
