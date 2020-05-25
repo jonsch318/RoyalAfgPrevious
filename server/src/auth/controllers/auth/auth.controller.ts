@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards, Req, Logger, HttpCode } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Req, Logger, HttpCode, Res, Get } from '@nestjs/common';
 import { RegisterDto } from '../../dtos/register-dto';
 import { AuthService } from '../../services/auth/auth.service';
 import { LocalAuthGuard } from '../../strategies/local-auth.guard';
@@ -47,21 +47,21 @@ export class AuthController {
    * Route /account/signin. Authenticates a user and creates a jwt Token to persist his authentication.
    * @param dto The required information to sign the user in
    * @param req The request object which contains the signed in user
+   * @param res The response object of the request
    */
   @SetCookies()
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
   @Post("signin")
-  async signin(@Body() dto: LoginDto, @Req() req, ){
-    req._cookies = this._authService.createCookie(req.user);
-    const user = await this._userService.findOne(dto.username);
-    Logger.debug("Created JWT and Cookie");
+  async signin(@Body() dto: LoginDto, @Req() req){
+    req._cookies = await this._authService.createCookie(req.user);
+
     return {
       error: "",
       data: {
-        id: user.id,
-        username: user.username,
-        fullname: user.fullname,
+        id: req.user.id,
+        username: req.user.username,
+        fullname: req.user.fullname,
       },
     };
   }
@@ -79,4 +79,23 @@ export class AuthController {
       message: "Sign out succeeded"
     }
   }
+
+  /**
+   * Checks whether the user is already logged in
+   */
+  @Get("verifyAuth")
+  async verifyAuthenticated(@Req() req){
+      const token = req.cookies["SESSIONID"];
+      const result = await this._authService.verifyJwt(token);
+
+      Logger.warn("the authentication status is " + result);
+
+      return {
+        error: "",
+        data: {
+          result: result,
+        }
+      }
+  }
+
 }

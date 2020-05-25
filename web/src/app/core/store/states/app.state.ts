@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { SidenavState } from './sidenav.state';
 import { ThemeService } from '../../services/theme.service';
 import { Injectable } from '@angular/core';
-import { ThemeActions } from '../actions/theme.action';
+import { ThemeActions } from "../actions/theme.action";
 import SetTheme = ThemeActions.SetTheme;
 
 /**
@@ -47,7 +47,7 @@ export class AppState {
 
   /**
    * Sets the theme to a new value
-   * @param ctx
+   * @param ctx The state context
    * @param action Holds the new value for which the theme should be set.
    */
   @Action(SetTheme)

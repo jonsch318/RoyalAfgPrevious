@@ -8,7 +8,7 @@ export namespace RegisterPageActions {
    * Start a registration process.
    */
   export class Register{
-    static readonly type = "[SignInPage] UserSignIn";
+    static readonly type = "[RegisterPage] UserRegister";
 
     /**
      * The default constructor

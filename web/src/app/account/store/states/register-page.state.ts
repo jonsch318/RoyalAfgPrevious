@@ -1,15 +1,8 @@
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { SignInPageActions } from '../actions/signIn-page.action';
-import SignIn = SignInPageActions.SignIn;
 import { catchError, map } from 'rxjs/operators';
 import { AuthActions } from '../actions/auth.action';
-import SignInSuccess = AuthActions.SignInSuccess;
-import SignInFailed = AuthActions.SignInFailed;
-import { of } from 'rxjs';
-import { criticalError, invalidCredentials } from '../errors/signIn-page.errors';
-import { HttpErrorResponse } from '@angular/common/http';
 import { RegisterPageActions } from '../actions/register-page.action';
 import Register = RegisterPageActions.Register;
 import RegisterFailed = AuthActions.RegisterFailed;
@@ -59,7 +52,7 @@ export class RegisterPageState {
 
   /**
    * kicks of the registration process via the auth service.
-   * @param ctx
+   * @param ctx The state context
    * @param action Contains the necessary information for the server.
    */
   @Action(Register)
@@ -82,8 +75,8 @@ export class RegisterPageState {
 
   /**
    * The registration process was unsuccessful display the errors of the process.
-   * @param ctx
-   * @param action
+   * @param ctx The state context
+   * @param action The action that is processed
    */
   @Action(RegisterFailed)
   registerFailed(ctx: StateContext<IRegisterPageState>, action: RegisterFailed){

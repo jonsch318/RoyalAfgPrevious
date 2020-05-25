@@ -317,7 +317,7 @@ if (typeof content === 'string') {
   content = [[module.i, content, '']];
 }
 
-var options = {}
+var options = {};
 
 options.insert = "head";
 options.singleton = false;

@@ -5,9 +5,9 @@ import { RegisterDto } from '../../dtos/register-dto';
 import {JwtService} from "@nestjs/jwt";
 import { WalletService } from '../../../wallet/services/wallet/wallet.service';
 import { IUserDoc } from '../../../user/interfaces/user-doc.interface';
-import { CookieOptions } from '@nestjsplus/cookies/index';
+import { CookieOptions } from '@nestjsplus/cookies';
 import * as moment from 'moment';
-import { IUser } from '../../../user/interfaces/user.interface';
+import { UserService } from '../../../user/services/user/user.service';
 
 /**
  * Provides methods to register, sign in and validate a user.
@@ -15,8 +15,9 @@ import { IUser } from '../../../user/interfaces/user.interface';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly jwtService: JwtService,
-    private readonly walletService: WalletService,
+    private readonly _jwtService: JwtService,
+    private readonly _walletService: WalletService,
+    private readonly _userService: UserService,
     @InjectModel("User") private readonly _userModel: Model<IUserDoc>,
   ) {
   }
@@ -35,7 +36,7 @@ export class AuthService {
     await user.save();
 
     // create a wallet for the user
-    await this.walletService.create(user);
+    await this._walletService.create(user);
 
     Logger.verbose(`User created ${user.username}`);
     return user;
@@ -72,13 +73,34 @@ export class AuthService {
     };
     Logger.verbose(`Created jwt with id ${user.id}`);
     // Create the jwt token and sign it.
-    return await this.jwtService.signAsync(payload, {
+    return await this._jwtService.signAsync(payload, {
       subject: user.id,
       expiresIn: "10d",
       issuer: "http://localhost:3000",
       algorithm: 'HS256',
       audience: "http://localhost:3000",
     });
+  }
+
+  /**
+   * Verifies the jwt token
+   * @param token
+   */
+  async verifyJwt(token: any): Promise<boolean>{
+    try{
+      const payload = await this._jwtService.verifyAsync(token);
+      if(!payload || !payload.sub){
+        return false;
+      }
+      const user = await this._userService.findById(payload.sub);
+      Logger.debug("Found during authentication check " + user);
+      if(user)
+        return true;
+      return false;
+    }
+    catch (e) {
+      return false;
+    }
   }
 
   async createCookie(user: IUserDoc): Promise<any>{

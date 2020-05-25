@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AccountModule } from './account/account.module';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment';
@@ -12,9 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './core/containers/app/app.component';
 import { MaterialModule } from './material';
-import { appStates } from './core/store';
 import { GamesModule } from './games/games.module';
 import { StaticModule } from './static/static.module';
+import { SidenavState } from './core/store/states/sidenav.state';
+import { AppState } from './core/store/states/app.state';
+
+const appStates = [
+  SidenavState,
+  AppState
+];
 
 // Main Application Module. Here we include all the other Modules and external Dependencies.
 @NgModule({

@@ -52,13 +52,16 @@ export class UserState {
 
   /**
    * kicks of the user service which fetches information from the server about the currently signed in user.
-   * @param ctx
-   * @param action
+   * @param ctx The current state
+   * @param action The action that is processed
    */
   @Action(GetUser)
   getUser(ctx: StateContext<IUserState>, action: GetUser){
     return this._userService.getUser().pipe(
-      map(user => ctx.dispatch(new GetUserSuccess(user))),
+      map(user => {
+        if(user)
+          ctx.dispatch(new GetUserSuccess(user));
+      }),
       catchError(error =>
         of(ctx.dispatch(new GetUserFailed(error))
       ))
@@ -67,8 +70,8 @@ export class UserState {
 
   /**
    * The user is correctly logged in. Dispatches the SignInVerified to change the Auth-Status State.
-   * @param ctx
-   * @param action
+   * @param ctx The current state
+   * @param action The action that is processed
    */
   @Action(GetUserSuccess)
   getUserSuccess(ctx: StateContext<IUserState>, action: GetUserSuccess){
@@ -80,8 +83,8 @@ export class UserState {
 
   /**
    * Sets the State for the new User
-   * @param ctx
-   * @param action
+   * @param ctx The current state
+   * @param action The action that is processed
    */
   @Action(SetUser)
   setUser(ctx: StateContext<IUserState>, action: SetUser){

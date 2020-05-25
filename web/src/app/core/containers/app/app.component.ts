@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { SidenavActions, SidenavState, ThemeActions } from '../../store';
+import { SidenavActions} from '../../store/actions/sidenav.action';
+import { ThemeActions } from '../../store/actions/theme.action';
 import { Observable } from 'rxjs';
 import CloseSidenav = SidenavActions.CloseSidenav;
 import OpenSidenav = SidenavActions.OpenSidenav;
 import SetTheme = ThemeActions.SetTheme;
 import { Themes } from '../../services/theme.service';
-import { AuthActions } from '../../../account/store/actions/auth.action';
 import { UserActions } from '../../../account/store/actions/user.action';
 import GetUser = UserActions.GetUser;
-import { SelectControlValueAccessor } from '@angular/forms';
 import { AuthStatusState } from '../../../account/store/states/auth-status.state';
 
 @Component({
@@ -19,8 +18,6 @@ import { AuthStatusState } from '../../../account/store/states/auth-status.state
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-
-
 
   @Select(AuthStatusState.getSignedIn)
   isSignedIn$: Observable<boolean>;
