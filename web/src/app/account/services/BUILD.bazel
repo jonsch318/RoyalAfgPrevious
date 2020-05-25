@@ -1,0 +1,13 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+ 
+ts_library
+    name = "services",
+    srcs = glob(["*.ts"]),
+    deps = [
+        "//src/app/account/interfaces:interfaces",
+        "//src/app/account/models:models",
+        "@npm//@angular/core",
+        "@npm//@angular/common/http",
+        "@npm//rxjs"
+        ],
+)
