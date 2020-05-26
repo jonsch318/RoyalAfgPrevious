@@ -7,19 +7,19 @@ import {
   Logger,
   HttpCode,
 } from '@nestjs/common';
-import { RegisterDto } from '../../dtos/register-dto';
-import { AuthService } from '../../services/auth/auth.service';
-import { LocalAuthGuard } from '../../strategies/local-auth.guard';
-import { LoginDto } from '../../dtos/login-dto';
+import { RegisterDto } from '../dtos/register-dto';
+import { AuthService } from '../services/auth.service';
+import { LocalAuthGuard } from '../strategies/local-auth.guard';
+import { LoginDto } from '../dtos/login-dto';
 import * as moment from 'moment';
-import { UserService } from '../../../user/services/user/user.service';
+import { UserService } from '../../user/services/user.service';
 import {
   ClearCookies,
   CookieOptions,
   Cookies,
   SetCookies,
 } from '@nestjsplus/cookies';
-import { JwtAuthGuard } from '../../strategies/jwt-auth.guard';
+import { JwtAuthGuard } from '../strategies/jwt-auth.guard';
 
 @Controller('api/account')
 export class AuthController {

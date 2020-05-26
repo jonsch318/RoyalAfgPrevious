@@ -4,11 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { WalletModule } from './wallet/wallet.module';
 import { CookieParserMiddleware } from '@nest-middlewares/cookie-parser';
-import { CorsMiddleware } from '@nest-middlewares/cors';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { logger } from 'codelyzer/util/logger';
 
 @Module({
   imports: [

@@ -1,16 +1,16 @@
 import * as mongoose from 'mongoose';
 import { UserSchemaName } from '../../user/models/user-schema';
-import Decimal from 'decimal.js';
 import { Logger } from '@nestjs/common';
+import Decimal from 'decimal.js';
 
-export const WalletSchemaName = "Wallet";
+export const WalletSchemaName = 'Wallet';
 
 const WalletSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: UserSchemaName,
     required: true,
-    unique: true
+    unique: true,
   },
   balanceNumber: {
     type: Number,
@@ -18,16 +18,16 @@ const WalletSchema = new mongoose.Schema({
   },
 });
 
-WalletSchema.virtual("balance").get(
-  function(){
-    if(!this.balanceNumber){
+WalletSchema.virtual('balance')
+  .get(function () {
+    if (!this.balanceNumber) {
       return new Decimal(0);
     }
     return new Decimal(this.balanceNumber);
-  }).set(
-    function(val: Decimal) {
-      Logger.verbose(`Setting new balance ${val}`);
-      this.balanceNumber =  val.ceil().toNumber();
+  })
+  .set(function (val) {
+    Logger.verbose(`Setting new balance ${val}`);
+    this.balanceNumber = val.ceil().toNumber();
   });
 
-export { WalletSchema }
+export { WalletSchema };

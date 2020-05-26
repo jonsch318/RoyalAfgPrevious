@@ -3,14 +3,12 @@ load("@npm_bazel_typescript//:index.bzl", "ts_library")
 
 ts_library(
     name = "controllers",
-    srcs = glob(["*.ts"]),
+        srcs = glob(
+            include = ["*.ts"],
+            exclude = ["*.spec.ts"],
+        ),
     deps = [
-        "//src/auth/dtos:dtos",
-        "//src/auth/services:services",
-        "//src/user/services:services",
         "//src/auth/strategies:strategies",
         "@npm//@nestjs/common",
-        "@npm//@nestjsplus/cookies",
-        "@npm//moment",
     ],
 )

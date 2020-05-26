@@ -3,8 +3,17 @@ load("@npm_bazel_typescript//:index.bzl", "ts_library")
 
 ts_library(
     name = "services",
-    srcs = glob(["*.ts"]),
+    srcs = glob(
+        include = ["*.ts"],
+        exclude = ["*.spec.ts"],
+    ),
     deps = [
-        "//src/auth/services/auth:authservice",
+        "//src/auth/dtos:dtos",
+        "//src/user/interfaces:interfaces",
+        "@npm//@nestjs/common",
+        "@npm//@nestjs/jwt",
+        "@npm//@nestjs/mongoose",
+        "@npm//@types/mongoose",
+        "@npm//mongoose",
     ],
 )

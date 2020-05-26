@@ -1,10 +1,10 @@
 import { Model } from 'mongoose';
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { RegisterDto } from '../../dtos/register-dto';
+import { RegisterDto } from '../dtos/register-dto';
 import { JwtService } from '@nestjs/jwt';
-//import { WalletService } from '../../../wallet/services/wallet/wallet.service';
-import { IUserDoc } from '../../../user/interfaces/user-doc.interface';
+//import { WalletService } from '../../../wallet/services/wallet.service';
+import { IUserDoc } from '../../user/interfaces/user-doc.interface';
 
 @Injectable()
 export class AuthService {

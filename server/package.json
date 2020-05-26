@@ -20,6 +20,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "@nest-middlewares/cookie-parser": "^6.0.0",
     "@nest-middlewares/cors": "^6.0.1",
     "@nestjs/common": "^7.0.2",

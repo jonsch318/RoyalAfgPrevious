@@ -5,13 +5,16 @@ ts_library(
     name = "services",
     srcs = glob(
         include = ["*.ts"],
-        exclude = ["*.spec.ts"],
+        exclude = ["*.spec.ts"],    
     ),
     deps = [
-        "//src/user/models:models",
         "//src/user/interfaces:interfaces",
+        "//src/wallet/interfaces:interfaces",
+        "//src/wallet/models:models",
         "@npm//@nestjs/common",
         "@npm//@nestjs/mongoose",
+        "@npm//decimal.js",
+        "@npm//@types/node",
         "@npm//mongoose",
         "@npm//@types/mongoose",
     ],

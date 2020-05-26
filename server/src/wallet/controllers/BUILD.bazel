@@ -2,17 +2,15 @@ package(default_visibility=["//visibility:public"])
 load("@npm_bazel_typescript//:index.bzl", "ts_library")
 
 ts_library(
-    name = "services",
+    name = "controllers",
     srcs = glob(
         include = ["*.ts"],
         exclude = ["*.spec.ts"],
     ),
     deps = [
-        "//src/user/models:models",
-        "//src/user/interfaces:interfaces",
+        "//src/auth/strategies:strategies",
+        "//src/wallet/services:services",
+        "//src/wallet/models:models",
         "@npm//@nestjs/common",
-        "@npm//@nestjs/mongoose",
-        "@npm//mongoose",
-        "@npm//@types/mongoose",
     ],
 )
