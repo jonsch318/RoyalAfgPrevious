@@ -13,7 +13,7 @@
     "server:dev": "cd ./server && yarn run start:dev",
     "server": "cd ./server && yarn run start",
     "installDependencies": "cd ./server && yarn install",
-    "build": "cd ./server && nest start",
+    "build": "cd ./server && nest build",
     "start": "node ./server/dist/main"
   },
   "engines": {
