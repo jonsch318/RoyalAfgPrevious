@@ -1,1 +1,1 @@
-web: yarn global add rimraf && cd ./server && yarn install && yarn run build && node ./dist/main
+web: yarn run build && node ./dist/main
