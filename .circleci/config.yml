@@ -1,22 +1,14 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1
 jobs:
   build:
-    docker:
-      - image: circleci/node:13.8.0
-      - image: circleci/mongodb:4.2.2
-        environment:
-          MONGO_USER: mongo
-          MONGO_PASSWORD: mongo
-          MONGO_DB: RoyalAfg
-
-    working_directory: ~/repo
-
+    executor:
+      name: node/default
+      tag: '14.4'
     steps:
       - checkout
-      - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-
-      - run:   
-
+      - node/with-cache:
+        steps:
+          - run: yarn install
+      - run: yarn run build
