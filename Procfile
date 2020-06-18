@@ -1,1 +1,1 @@
-web: cd ./server && yarn install && yarn run build && yarn run start
+web: cd ./server && yarn install && yarn run buildServer && yarn run startServer
