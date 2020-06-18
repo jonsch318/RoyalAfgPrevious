@@ -7,6 +7,7 @@ import { CookieParserMiddleware } from '@nest-middlewares/cookie-parser';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MainController } from './main-controller';
 
 /**
  * Main Module of the application. This invokes all the other modules.
@@ -15,10 +16,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   imports: [
     // Enables the usage of the .env file.
     ConfigModule.forRoot(),
-    // Lets the server serve static files to client.
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'static'),
-    }),
     // Enables the connection to the MongoDB Database
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -34,7 +31,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     AuthModule,
     WalletModule,
   ],
-  controllers: [],
+  controllers: [MainController],
   providers: [],
 })
 export class AppModule implements NestModule {
