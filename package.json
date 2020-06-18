@@ -12,12 +12,11 @@
     "web": "cd ./web && ng serve",
     "server:dev": "cd ./server && yarn run start:dev",
     "server": "cd ./server && yarn run start",
-    "build": "cd ./server && yarn run build",
-    "start": "node ./server/dist/main",
-    "rimraf": "./node_modules/rimraf/bin.js"
+    "build": "cd ./server && yarn install && yarn run build",
+    "start": "node ./server/dist/main"
   },
   "engines": {
     "node": "14.x",
     "yarn": "1.x"
-  }
+  },
 }
