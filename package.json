@@ -8,16 +8,15 @@
   },
   "author": "Jonas Schneider <jonas.max.schneider@gmail.com>",
   "license": "MIT",
-
   "scripts": {
-    "start": "concurrently \"yarn run web\" \"yarn run server\"",
-    "start:dev": "concurrently \"yarn run web\" \"yarn run server:dev\"",
     "web": "cd ./web && ng serve",
     "server:dev": "cd ./server && yarn run start:dev",
-    "server": "cd ./server && yarn run start"
+    "server": "cd ./server && yarn run start",
+    "build": "cd ./server && yarn run build",
+    "start": "node ./server/dist/main"
   },
-
-  "dependencies": {
-    "concurrently": "^5.1.0"
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.x"
   }
 }
