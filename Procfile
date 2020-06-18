@@ -1,1 +1,1 @@
-web: yarn run build && node ./dist/main
+web: node ./dist/main
