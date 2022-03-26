@@ -33,7 +33,7 @@
     "@ngxs/router-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
     "classlist.js": "^1.1.20150312",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "tslint": "^5.20.1",
