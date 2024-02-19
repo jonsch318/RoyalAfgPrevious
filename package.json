@@ -17,8 +17,7 @@
     "start": "node ./server/dist/main"
   },
   "engines": {
-    "node": "14.x",
-    "yarn": "1.x"
+    "node": "20.x"
   },
   "dependencies": {
     "@nest-middlewares/cookie-parser": "^6.0.0",
